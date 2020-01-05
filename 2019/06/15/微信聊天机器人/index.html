@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+
+  <script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/favicon-32x32-next.png?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "d42664d6"
+    });
+  daovoice('update');
+  </script>
+
+  <meta name="description" content="python制作微信聊天机器人">
+<meta name="keywords" content="python,微信,聊天机器人">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python制作微信聊天机器人">
+<meta property="og:url" content="http://freestylefly.github.io/2019/06/15/微信聊天机器人/index.html">
+<meta property="og:site_name" content="苍 何">
+<meta property="og:description" content="python制作微信聊天机器人">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190617005408507.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190617010507281.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190617010528329.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190617010555499.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190617010658475.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190617010724171.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019061700583138.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190617005714728.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-12-21T04:15:16.132Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python制作微信聊天机器人">
+<meta name="twitter:description" content="python制作微信聊天机器人">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190617005408507.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="苍 何" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://freestylefly.github.io/2019/06/15/微信聊天机器人/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>python制作微信聊天机器人 | 苍 何</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <link rel="stylesheet" href="/dist/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script>
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/freestylefly"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><script>
+ function GetRandomNum(Min,Max)
+  {
+    var Range = Max - Min;
+    var Rand = Math.random();
+    return(Min + Math.round(Rand * Range));
+  }
+function setSidebarMarginTop (headerOffset) {
+    return $('#sidebar').css({ 'margin-top': headerOffset });
+  }
+ function getHeaderOffset () {
+    return $('.header-inner').height() + CONFIG.sidebar.offset;
+  }
+  window.onload=function(){
+    var subtitle = "我翻山越岭，终寻一人等候。W和梦想平等交易，和喧嚣保持距离。W希望你好，希望你顺利，即使小有坎坷，偶遇困顿也能化险为夷。W成熟是给你陌生人看的，逗比是给朋友看的，幼稚是给喜欢的人看的。W不要说了，我不会屈服。W刚刚又没忍住，往宇宙里发送了想你的脑电波。";
+     var mytitle = subtitle.split("W");
+     var max = mytitle.length-1;
+     var index = GetRandomNum(0,max);
+     var text = mytitle[index];
+     $("#helloTitle").html(text);
+     var headOffset = getHeaderOffset();
+     setSidebarMarginTop(headOffset);
+     //动态subtitle设置
+  }
+</script>
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">苍 何</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  
+    <p style="color:#black;font-size:18px;font-family:STXingkai" id="helloTitle" class="site-subtitle"></p>
+  
+
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-love">
+    <a href="/love/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>love</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-loveshow">
+    <a href="/loveshow/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>loveshow</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-lovephoto">
+    <a href="/lovePhoto/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>lovePhoto</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-showlove">
+    <a href="/showLove/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>showLove</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+    <a href="/404/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>公益 404</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://freestylefly.github.io/2019/06/15/微信聊天机器人/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="苍 何">
+      <meta itemprop="description" content="你若晴天，我便安好。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="苍 何">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python制作微信聊天机器人
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-15 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-15T00:00:00+08:00">2019-06-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-21 12:15:16" itemprop="dateModified" datetime="2019-12-21T12:15:16+08:00">2019-12-21</time>
+              
+            
+          </span>
+
+
+          
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+            <span class="post-meta-divider">|</span>
+<span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>文章字数： 4,963</span>
+
+<span class="post-meta-divider">|</span>
+<span title="post.min2read"><span class="post-meta-item-icon"><i class="fa fa-clock-o"></i></span>阅读时长： 22分钟</span>
+
+          
+
+          
+
+          
+              <div class="post-description">python制作微信聊天机器人</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>python制作微信聊天机器人</p>
+<p>周末心情不好搞了一个微信陪聊机器人陪我聊天。</p>
+<p>本系列文章在 <a href="https://github.com/freestylefly/javaStudy" target="_blank" rel="noopener">https://github.com/freestylefly/javaStudy</a> 持(huan)续(ying)更(jia)新(ru)中，欢迎有兴趣的童鞋们关注。</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><!-- TOC -->
+<ul>
+<li><a href="#目录">目录</a></li>
+<li><a href="#一前言">一、前言</a></li>
+<li><a href="#二itchat库详解">二、itchat库详解</a></li>
+<li><a href="#三python下载与安装">三、Python下载与安装</a></li>
+<li><a href="#四itchat库下载">四、itchat库下载</a></li>
+<li><a href="#五简单示例">五、简单示例</a></li>
+<li><a href="#六群聊">六、群聊</a></li>
+<li><a href="#七定时发送消息">七、定时发送消息</a></li>
+<li><a href="#八集成图灵api制作聊天机器人">八、集成图灵API制作聊天机器人</a></li>
+<li><a href="#九监控接收到的数据">九、监控接收到的数据</a></li>
+<li><a href="#十验证不同信息类型和对应处理方式">十、验证不同信息类型和对应处理方式</a></li>
+<li><a href="#十一监控撤回信息和数据提取">十一、监控撤回信息和数据提取</a></li>
+<li><a href="#十二定时清理缓存">十二、定时清理缓存</a></li>
+<li><a href="#十三部署到云服务器实现24小时在线陪聊">十三、部署到云服务器实现24小时在线陪聊</a></li>
+<li><a href="#十五成果展示">十五、成果展示</a></li>
+<li><a href="#十六关于我">十六、关于我</a></li>
+</ul>
+<!-- /TOC -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>由于在抖音上刷到微信机器人自动陪聊，心血来潮，自己利用itchat和图灵机器人实现了微信自动回复，监听消息，消息防撤回等。周末心情不好搞了一个微信陪聊机器人陪我聊天。</p>
+<p>注意：</p>
+<p>1、图灵机器人更新，对于新注册的号未认证每个号仅有2次请求，请注册后尽快完成身份认证。</p>
+<p>2、用到了python的部分知识（不会也无关紧要），会安装即可。</p>
+<p>3、有很多人想用自己的微信小号进行玩耍，但不幸的是，微信官方已经禁止这种行为，其实自动回复机器人本质是基于微信网页版原理实现的，也就是说很多微信小号，连微信网页版都被限制了不能登录，那么这个机器人是不会成功的。所以，首先确保微信能登上网页版。</p>
+<p>4、关于安全问题，由于itchat是别人开发的开源库，有没有安全风险暂时不得而知。在开始测试前请确保你已知悉相应的风险。</p>
+<h2 id="二、itchat库详解"><a href="#二、itchat库详解" class="headerlink" title="二、itchat库详解"></a>二、itchat库详解</h2><p><strong>itchat的仓库地址</strong>：<a href="https://github.com/littlecodersh/ItChat" target="_blank" rel="noopener">https://github.com/littlecodersh/ItChat</a></p>
+<p>itchat是一个开源的微信个人号接口，使用python调用微信从未如此简单</p>
+<p>使用不到三十行的代码，你就可以完成一个能够处理所有信息的微信机器人。</p>
+<p>。。。。。</p>
+<h2 id="三、Python下载与安装"><a href="#三、Python下载与安装" class="headerlink" title="三、Python下载与安装"></a>三、Python下载与安装</h2><p>下载地址：<a href="https://www.python.org/downloads/windows/" target="_blank" rel="noopener">https://www.python.org/downloads/windows/</a>（官网地址）下载最新版本3.7.3</p>
+<p>点击download windows x86-64 executable installer下载windows64位exe可执行性文件</p>
+<p>详细 下载安装步骤参考：<a href="https://blog.csdn.net/mingzhuo_126/article/details/81239156" target="_blank" rel="noopener">https://blog.csdn.net/mingzhuo_126/article/details/81239156</a></p>
+<p>下载完后，键盘按下win，输入python，可以看到Python3.7和IDLE Python</p>
+<h2 id="四、itchat库下载"><a href="#四、itchat库下载" class="headerlink" title="四、itchat库下载"></a>四、itchat库下载</h2><p>打开cmd或者Python3.7</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install itchat</span><br></pre></td></tr></table></figure>
+<p>查看下载成功与否</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &quot;import itchat&quot;</span><br></pre></td></tr></table></figure>
+<p>如果没有报错信息说明你已经将实验环境安装完成。</p>
+<h2 id="五、简单示例"><a href="#五、简单示例" class="headerlink" title="五、简单示例"></a>五、简单示例</h2><p>通过一个简单的例子来让读者体会下通过itchat编写一个微信机器人有多简单，代码功能：<br>扫码登录后给文件助手发送一条信息，监听接收到的文件信息，打印出来，具体代码如下。</p>
+<p>注意：接下来的代码均在Python3.7客户端运行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itchat</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="meta">@itchat.msg_register(itchat.content.TEXT)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reply_msg</span><span class="params">(msg)</span>:</span></span><br><span class="line">    print(<span class="string">"收到一条信息："</span>,msg.text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    itchat.auto_login()</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line">    itchat.send(<span class="string">"文件助手你好哦"</span>, toUserName=<span class="string">"filehelper"</span>)</span><br><span class="line">    itchat.run()</span><br></pre></td></tr></table></figure>
+<p><strong>代码执行结果</strong></p>
+<p>先会弹出一个二维码图片，扫描后会登陆网页端微信，间隔一会儿后文件助手收到相关的信息</p>
+<p>文件助手你好哦</p>
+<p>然后用另一个账号发送一条信息给这个账号，控制台会把接收到的信息打印出来</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Getting uuid of QR code.</span><br><span class="line">Downloading QR code.</span><br><span class="line">Please scan the QR code to log <span class="keyword">in</span>.</span><br><span class="line">Please press confirm on your phone.</span><br><span class="line">Loading the contact, this may take a little <span class="keyword">while</span>.</span><br><span class="line">TERM environment variable <span class="keyword">not</span> set.</span><br><span class="line">Login successfully <span class="keyword">as</span> Robot Pig</span><br><span class="line">Start auto replying.</span><br><span class="line">收到一条信息： 你好</span><br></pre></td></tr></table></figure>
+<p>通过上面8行有效代码就实现了一个简单的技巧人，酷不酷，带着这样的思路，我们可以进行扩展，比如添加一个自动回复的功能，比如在忙的时候，别人给你发信息，自动回复：”在忙，晚点给你回复信息”等。</p>
+<h2 id="六、群聊"><a href="#六、群聊" class="headerlink" title="六、群聊"></a>六、群聊</h2><p>在微信网页端改版后，创建群聊、拉人进群和删除群聊这几个接口都用不了，现在利用itchat能做的有：查找群聊，往群聊发送信息，以及监控群聊信息，使用代码示例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itchat</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@itchat.msg_register(itchat.content.TEXT, isGroupChat=True)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reply_msg</span><span class="params">(msg)</span>:</span></span><br><span class="line">    print(<span class="string">"收到一条群信息："</span>, msg[<span class="string">'ActualNickName'</span>], msg[<span class="string">'Content'</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">after_login</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 获得完整的群聊列表</span></span><br><span class="line">    print(<span class="string">"完整的群聊列表如下："</span>)</span><br><span class="line">    print(itchat.get_chatrooms())</span><br><span class="line">    <span class="comment"># 查找特定群聊</span></span><br><span class="line">    time.sleep(<span class="number">10</span>)</span><br><span class="line">    <span class="comment"># 通过群聊名查找</span></span><br><span class="line">    chat_rooms = itchat.search_chatrooms(name=<span class="string">'小猪的Python学习交流群'</span>)</span><br><span class="line">    <span class="keyword">if</span> len(chat_rooms) &gt; <span class="number">0</span>:</span><br><span class="line">        itchat.send_msg(<span class="string">'测试'</span>, chat_rooms[<span class="number">0</span>][<span class="string">'UserName'</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    itchat.auto_login(loginCallback=after_login)</span><br><span class="line">    itchat.run()</span><br></pre></td></tr></table></figure>
+<p>代码执行结果如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">完整的群聊列表如下：</span><br><span class="line">[&lt;Chatroom: &#123;<span class="string">'MemberList'</span>: &lt;ContactList: []&gt;, <span class="string">'Uin'</span>: <span class="number">0</span>, <span class="string">'UserName'</span>: <span class="string">'@@60dc5027bbbb83d532aa633b8d126szcf497a98ceea5c098d2c65f0932139b88'</span>, <span class="string">'NickName'</span>: <span class="string">'湖北人在深圳90后'</span>, <span class="string">'HeadImgUrl'</span>: <span class="string">'/cgi-bin/mmwebwx-bin/webwxgetheadimg?seq=625714901&amp;username=@@60dc502769a783d532aa633b8d126190f497a98ceea5c098d2c65f0932139b88&amp;skey=@crypt_2d4a1972_ea00536c8ac4e35fae1c2a1c48dfe40d'</span>, <span class="string">'ContactFlag'</span>: <span class="number">3</span>, <span class="string">'MemberCount'</span>: <span class="number">82</span>, <span class="string">'RemarkName'</span>: <span class="string">''</span>, <span class="string">'HideInputBarFlag'</span>: <span class="number">0</span>, <span class="string">'Sex'</span>: <span class="number">0</span>, <span class="string">'Signature'</span>: <span class="string">''</span>, <span class="string">'VerifyFlag'</span>: <span class="number">0</span>, <span class="string">'OwnerUin'</span>: <span class="number">0</span>, <span class="string">'PYInitial'</span>: <span class="string">'HBRZSZ90H'</span>, <span class="string">'PYQuanPin'</span>: <span class="string">'hubeirenzaishenzhen90hou'</span>, <span class="string">'RemarkPYInitial'</span>: <span class="string">''</span>, <span class="string">'RemarkPYQuanPin'</span>: <span class="string">''</span>, <span class="string">'StarFriend'</span>: <span class="number">0</span>, <span class="string">'AppAccountFlag'</span>: <span class="number">0</span>, <span class="string">'Statues'</span>: <span class="number">0</span>, <span class="string">'AttrStatus'</span>: <span class="number">0</span>, <span class="string">'Province'</span>: <span class="string">''</span>, <span class="string">'City'</span>: <span class="string">''</span>, <span class="string">'Alias'</span>: <span class="string">''</span>, <span class="string">'SnsFlag'</span>: <span class="number">0</span>, <span class="string">'UniFriend'</span>: <span class="number">0</span>, <span class="string">'DisplayName'</span>: <span class="string">''</span>, <span class="string">'ChatRoomId'</span>: <span class="number">0</span>, <span class="string">'KeyWord'</span>: <span class="string">''</span>, <span class="string">'EncryChatRoomId'</span>: <span class="string">''</span>, <span class="string">'IsOwner'</span>: <span class="number">0</span>, <span class="string">'IsAdmin'</span>: <span class="keyword">None</span>, <span class="string">'Self'</span>: &lt;User: &#123;<span class="string">'MemberList'</span>: &lt;ContactList: []&gt;, <span class="string">'UserName'</span>: <span class="string">'@29b9cb6386352503319f411754e7424e383ae09e50a224feca754a4516db6a13'</span>, <span class="string">'City'</span>: <span class="string">''</span>, <span class="string">'DisplayName'</span>: <span class="string">''</span>, <span class="string">'PYQuanPin'</span>: <span class="string">''</span>, <span class="string">'RemarkPYInitial'</span>: <span class="string">''</span>, <span class="string">'Province'</span>: <span class="string">''</span>, <span class="string">'KeyWord'</span>: <span class="string">''</span>, <span class="string">'RemarkName'</span>: <span class="string">''</span>, <span class="string">'PYInitial'</span>: <span class="string">''</span>, <span class="string">'EncryChatRoomId'</span>: <span class="string">''</span>, <span class="string">'Alias'</span>: <span class="string">''</span>, <span class="string">'Signature'</span>: <span class="string">'(´v｀o)♡'</span>, <span class="string">'NickName'</span>: <span class="string">'Robot Pig'</span>, <span class="string">'RemarkPYQuanPin'</span>: <span class="string">''</span>, <span class="string">'HeadImgUrl'</span>: <span class="string">'/cgi-bin/mmwebwx-bin/webwxgeticon?seq=275167114&amp;username=@29b9cb6386352503319f411754e7424e383ae09e50a224feca754a4516db6a13&amp;skey=@crypt_2d4a1972_ea00536c8ac4e35fae1c2a1c48dfe40d'</span>, <span class="string">'UniFriend'</span>: <span class="number">0</span>, <span class="string">'Sex'</span>: <span class="number">2</span>, <span class="string">'AppAccountFlag'</span>: <span class="number">0</span>, <span class="string">'VerifyFlag'</span>: <span class="number">0</span>, <span class="string">'ChatRoomId'</span>: <span class="number">0</span>, <span class="string">'HideInputBarFlag'</span>: <span class="number">0</span>, <span class="string">'AttrStatus'</span>: <span class="number">0</span>, <span class="string">'SnsFlag'</span>: <span class="number">1</span>, <span class="string">'MemberCount'</span>: <span class="number">0</span>, <span class="string">'OwnerUin'</span>: <span class="number">0</span>, <span class="string">'ContactFlag'</span>: <span class="number">0</span>, <span class="string">'Uin'</span>: <span class="number">3454488193</span>, <span class="string">'StarFriend'</span>: <span class="number">0</span>, <span class="string">'Statues'</span>: <span class="number">0</span>, <span class="string">'WebWxPluginSwitch'</span>: <span class="number">0</span>, <span class="string">'HeadImgFlag'</span>: <span class="number">1</span>&#125;&gt;&#125;&gt; 内容过多省略... ]</span><br><span class="line"></span><br><span class="line">收到一条群信息： 培杰 <span class="number">123</span></span><br><span class="line">收到一条群信息： 培杰 你好</span><br></pre></td></tr></table></figure>
+<p>另外，群聊除了通过群名搜索外还可以通过<strong>username</strong>来查找，或者两者搭配使用；<br>在msg里有一个<strong>isAt</strong>字段，可用于判断是否被人@了</p>
+<p>使用方式和群聊的非常类似，搜索公众号方法<strong>search_mps</strong>，监听公众号信息添加<strong>isMpChat=True</strong>元素，使用代码示例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itchat</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@itchat.msg_register(itchat.content.TEXT, isMpChat=True)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reply_msg</span><span class="params">(msg)</span>:</span></span><br><span class="line">    print(<span class="string">"收到一条公众号信息："</span>, msg[<span class="string">'User'</span>][<span class="string">'NickName'</span>], msg[<span class="string">'Content'</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login_after</span><span class="params">()</span>:</span></span><br><span class="line">    mps = itchat.search_mps(name=<span class="string">'CoderPig'</span>)</span><br><span class="line">    <span class="keyword">if</span> len(mps) &gt; <span class="number">0</span>:</span><br><span class="line">        print(mps)</span><br><span class="line">        itchat.send_msg(<span class="string">'人生苦短'</span>, toUserName=mps[<span class="number">0</span>][<span class="string">'UserName'</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    itchat.auto_login(loginCallback=login_after)</span><br><span class="line">    itchat.run()</span><br></pre></td></tr></table></figure>
+<p><strong>代码执行结果如下</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&lt;MassivePlatform: &#123;<span class="string">'MemberList'</span>: &lt;ContactList: []&gt;, <span class="string">'Uin'</span>: <span class="number">0</span>, <span class="string">'UserName'</span>: <span class="string">'@07585e92f75be7320e49627cf0c3ad43'</span>, <span class="string">'NickName'</span>: <span class="string">'CoderPig'</span>, <span class="string">'HeadImgUrl'</span>: <span class="string">'/cgi-bin/mmwebwx-bin/webwxgeticon?seq=610904174&amp;username=@07585e92f75be7320e49627cf0c3ad43&amp;skey=@crypt_2d4a1972_bc443bf966f94fa11f2db8f812e456cf'</span>, <span class="string">'ContactFlag'</span>: <span class="number">3</span>, <span class="string">'MemberCount'</span>: <span class="number">0</span>, <span class="string">'RemarkName'</span>: <span class="string">''</span>, <span class="string">'HideInputBarFlag'</span>: <span class="number">0</span>, <span class="string">'Sex'</span>: <span class="number">0</span>, <span class="string">'Signature'</span>: <span class="string">'一枚咸鱼Android开发，会点Python，分享点学习经验，总结，鸡汤，读书笔记，生活技巧'</span>, <span class="string">'VerifyFlag'</span>: <span class="number">8</span>, <span class="string">'OwnerUin'</span>: <span class="number">0</span>, <span class="string">'PYInitial'</span>: <span class="string">'CODERPIG'</span>, <span class="string">'PYQuanPin'</span>: <span class="string">'CoderPig'</span>, <span class="string">'RemarkPYInitial'</span>: <span class="string">''</span>, <span class="string">'RemarkPYQuanPin'</span>: <span class="string">''</span>, <span class="string">'StarFriend'</span>: <span class="number">0</span>, <span class="string">'AppAccountFlag'</span>: <span class="number">0</span>, <span class="string">'Statues'</span>: <span class="number">0</span>, <span class="string">'AttrStatus'</span>: <span class="number">0</span>, <span class="string">'Province'</span>: <span class="string">'广东'</span>, <span class="string">'City'</span>: <span class="string">'深圳'</span>, <span class="string">'Alias'</span>: <span class="string">''</span>, <span class="string">'SnsFlag'</span>: <span class="number">0</span>, <span class="string">'UniFriend'</span>: <span class="number">0</span>, <span class="string">'DisplayName'</span>: <span class="string">''</span>, <span class="string">'ChatRoomId'</span>: <span class="number">0</span>, <span class="string">'KeyWord'</span>: <span class="string">'gh_'</span>, <span class="string">'EncryChatRoomId'</span>: <span class="string">''</span>, <span class="string">'IsOwner'</span>: <span class="number">0</span>&#125;&gt;]</span><br><span class="line"></span><br><span class="line">收到一条公众号信息： CoderPig 我用Python</span><br></pre></td></tr></table></figure>
+<h2 id="七、定时发送消息"><a href="#七、定时发送消息" class="headerlink" title="七、定时发送消息"></a>七、定时发送消息</h2><p>定时发送信息这个操作在日常生活中非常实用，比如给别人发生日或者节日祝福，晚上12点准时发，如果有早睡习惯的要熬到12点就很难受了，我们可以利用itchat编写一个简单的定时发送信息脚本。这里我们用到一个apscheduler定时调度任务模块，在命令行键入pip install apscheduler即可完成安装。这里并不会详细讲解，有兴趣的可移步到官方文档自行查阅：<a href="http://apscheduler.readthedocs.io/en/latest/userguide.html" target="_blank" rel="noopener">http://apscheduler.readthedocs.io/en/latest/userguide.html</a> </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itchat</span><br><span class="line"><span class="keyword">from</span> apscheduler.schedulers.blocking <span class="keyword">import</span> BlockingScheduler</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 发送信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_msg</span><span class="params">()</span>:</span></span><br><span class="line">    user_info = itchat.search_friends(name=<span class="string">'培杰'</span>)</span><br><span class="line">    <span class="keyword">if</span> len(user_info) &gt; <span class="number">0</span>:</span><br><span class="line">        user_name = user_info[<span class="number">0</span>][<span class="string">'UserName'</span>]</span><br><span class="line">        itchat.send_msg(<span class="string">'生日快乐哦！'</span>, toUserName=user_name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">after_login</span><span class="params">()</span>:</span></span><br><span class="line">    sched.add_job(send_msg, <span class="string">'cron'</span>, year=<span class="number">2018</span>, month=<span class="number">7</span>, day=<span class="number">28</span>, hour=<span class="number">16</span>, minute=<span class="number">5</span>, second=<span class="number">30</span>)</span><br><span class="line">    sched.start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">after_logout</span><span class="params">()</span>:</span></span><br><span class="line">    sched.shutdown()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    sched = BlockingScheduler()</span><br><span class="line">    itchat.auto_login(loginCallback=after_login, exitCallback=after_login)</span><br><span class="line">    itchat.run()</span><br></pre></td></tr></table></figure>
+<p> 这个可以用来撩妹最不错了，每天定时的早安晚安，绝对一秒都不会落</p>
+<h2 id="八、集成图灵API制作聊天机器人"><a href="#八、集成图灵API制作聊天机器人" class="headerlink" title="八、集成图灵API制作聊天机器人"></a>八、集成图灵API制作聊天机器人</h2><p>图灵机器人官网：<a href="http://www.tuling123.com/member/robot/index.jhtml" target="_blank" rel="noopener">http://www.tuling123.com/member/robot/index.jhtml</a> </p>
+<p>注册一个账号后，点击创建机器人，由于最近刚刚整改，必须经过实名认证才可以调用</p>
+<p>在调用前可以在postman里面测试一下图灵机器人的魔力。测试可以参考官方文档：</p>
+<p><a href="https://www.kancloud.cn/turing/www-tuling123-com/718227" target="_blank" rel="noopener">https://www.kancloud.cn/turing/www-tuling123-com/718227</a></p>
+<p>注册一个账号后，点击创建机器人，会弹出如图所示的面板，按需配置下即可。</p>
+<p>这里记下<strong>apikey</strong>调用接口用的秘钥。</p>
+<p><strong>具体代码实现如下</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itchat</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_response</span><span class="params">(_info)</span>:</span></span><br><span class="line">    print(_info)                                       <span class="comment"># 从好友发过来的消息</span></span><br><span class="line">    api_url = <span class="string">'http://www.tuling123.com/openapi/api'</span>   <span class="comment"># 图灵机器人网址</span></span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">'key'</span>: <span class="string">'这里写apiKey'</span>,     <span class="comment"># 如果这个 apiKey 如不能用，那就注册一次</span></span><br><span class="line">        <span class="string">'info'</span>: _info,                                 <span class="comment"># 这是我们从好友接收到的消息 然后转发给图灵机器人</span></span><br><span class="line">        <span class="string">'userid'</span>: <span class="string">'wechat-robot'</span>,                      <span class="comment"># 这里你想改什么都可以</span></span><br><span class="line">    &#125;</span><br><span class="line">    r = requests.post(api_url, data=data).json()       <span class="comment"># 把data数据发</span></span><br><span class="line">    print(r.get(<span class="string">'text'</span>))                               <span class="comment"># 机器人回复给好友的消息</span></span><br><span class="line">    <span class="keyword">return</span> r</span><br><span class="line">	</span><br><span class="line"><span class="meta">@itchat.msg_register(itchat.content.TEXT)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_reply</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"【我是天才^_^】"</span> + get_response(msg[<span class="string">"Text"</span>])[<span class="string">"text"</span>]</span><br><span class="line">	</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    itchat.auto_login(hotReload=<span class="keyword">True</span>,enableCmdQR=<span class="number">2</span>)                  <span class="comment"># hotReload = True, 保持在线，下次运行代码可自动登录,可以添加enableCmdQR=True参数，让二维码显示到命令行上，另外部分系统可能字符宽度有出入，可以通过把enableCmdQR赋值为特定的倍数进行调整。如设置值为2 </span></span><br><span class="line">    itchat.run()</span><br></pre></td></tr></table></figure>
+<h2 id="九、监控接收到的数据"><a href="#九、监控接收到的数据" class="headerlink" title="九、监控接收到的数据"></a>九、监控接收到的数据</h2><p>先是监控信息，信息又分为好友聊天和群聊，我们编写代码来监控下收到的数据是怎么样的？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itchat</span><br><span class="line"><span class="keyword">from</span> itchat.content <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 好友信息监听</span></span><br><span class="line"><span class="meta">@itchat.msg_register([TEXT, PICTURE, RECORDING, ATTACHMENT, VIDEO], isFriendChat=True)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_friend_msg</span><span class="params">(msg)</span>:</span></span><br><span class="line">    print(<span class="string">"好友信息: "</span>, msg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 群聊信息监听</span></span><br><span class="line"><span class="meta">@itchat.msg_register([TEXT, PICTURE, RECORDING, ATTACHMENT, VIDEO], isGroupChat=True)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">information</span><span class="params">(msg)</span>:</span></span><br><span class="line">    print(<span class="string">"群聊信息: "</span>, msg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    itchat.auto_login()</span><br><span class="line">    itchat.run()</span><br></pre></td></tr></table></figure>
+<p>给机器人发送一条信息，还有往群聊里发送一条信息，查看打印的信息内容，先是好友信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">好友信息:  &#123;<span class="string">'MsgId'</span>: <span class="string">'5500935424291030814'</span>, <span class="string">'FromUserName'</span>: <span class="string">'@8fd8b5b2bd0862ed5d0d573bc6c08362'</span>, <span class="string">'ToUserName'</span>: <span class="string">'@913c3124d973db6ae25924bd0598b48a0028e0c2d01e18d8095cc6fd58db116b'</span>, <span class="string">'MsgType'</span>: <span class="number">1</span>, <span class="string">'Content'</span>: <span class="string">'123'</span>, <span class="string">'Status'</span>: <span class="number">3</span>, <span class="string">'ImgStatus'</span>: <span class="number">1</span>, <span class="string">'CreateTime'</span>: <span class="number">1533010285</span>, <span class="string">'VoiceLength'</span>: <span class="number">0</span>, <span class="string">'PlayLength'</span>: <span class="number">0</span>, <span class="string">'FileName'</span>: <span class="string">''</span>, <span class="string">'FileSize'</span>: <span class="string">''</span>, <span class="string">'MediaId'</span>: <span class="string">''</span>, <span class="string">'Url'</span>: <span class="string">''</span>, <span class="string">'AppMsgType'</span>: <span class="number">0</span>, <span class="string">'StatusNotifyCode'</span>: <span class="number">0</span>, <span class="string">'StatusNotifyUserName'</span>: <span class="string">''</span>, <span class="string">'RecommendInfo'</span>: &#123;<span class="string">'UserName'</span>: <span class="string">''</span>, <span class="string">'NickName'</span>: <span class="string">''</span>, <span class="string">'QQNum'</span>: <span class="number">0</span>, <span class="string">'Province'</span>: <span class="string">''</span>, <span class="string">'City'</span>: <span class="string">''</span>, <span class="string">'Content'</span>: <span class="string">''</span>, <span class="string">'Signature'</span>: <span class="string">''</span>, <span class="string">'Alias'</span>: <span class="string">''</span>, <span class="string">'Scene'</span>: <span class="number">0</span>, <span class="string">'VerifyFlag'</span>: <span class="number">0</span>, <span class="string">'AttrStatus'</span>: <span class="number">0</span>, <span class="string">'Sex'</span>: <span class="number">0</span>, <span class="string">'Ticket'</span>: <span class="string">''</span>, <span class="string">'OpCode'</span>: <span class="number">0</span>&#125;, <span class="string">'ForwardFlag'</span>: <span class="number">0</span>, <span class="string">'AppInfo'</span>: &#123;<span class="string">'AppID'</span>: <span class="string">''</span>, <span class="string">'Type'</span>: <span class="number">0</span>&#125;, <span class="string">'HasProductId'</span>: <span class="number">0</span>, <span class="string">'Ticket'</span>: <span class="string">''</span>, <span class="string">'ImgHeight'</span>: <span class="number">0</span>, <span class="string">'ImgWidth'</span>: <span class="number">0</span>, <span class="string">'SubMsgType'</span>: <span class="number">0</span>, <span class="string">'NewMsgId'</span>: <span class="number">5500935424291030814</span>, <span class="string">'OriContent'</span>: <span class="string">''</span>, <span class="string">'EncryFileName'</span>: <span class="string">''</span>, <span class="string">'User'</span>: &lt;User: &#123;<span class="string">'MemberList'</span>: &lt;ContactList: []&gt;, <span class="string">'Uin'</span>: <span class="number">0</span>, <span class="string">'UserName'</span>: <span class="string">'@8fd8b5b2bd0862ed5d0d573bc6c08362'</span>, <span class="string">'NickName'</span>: <span class="string">'CoderPig'</span>, <span class="string">'HeadImgUrl'</span>: <span class="string">'/cgi-bin/mmwebwx-bin/webwxgeticon?seq=625711027&amp;username=@8fd8b5b2bd0862ed5d0d573bc6c08362&amp;skey=@crypt_2d4a1972_26dc3be99a177455b82518b3ca6e6cc5'</span>, <span class="string">'ContactFlag'</span>: <span class="number">3</span>, <span class="string">'MemberCount'</span>: <span class="number">0</span>, <span class="string">'RemarkName'</span>: <span class="string">''</span>, <span class="string">'HideInputBarFlag'</span>: <span class="number">0</span>, <span class="string">'Sex'</span>: <span class="number">1</span>, <span class="string">'Signature'</span>: <span class="string">'不服气，就用行动去证明，少说多做...2018.7.29'</span>, <span class="string">'VerifyFlag'</span>: <span class="number">0</span>, <span class="string">'OwnerUin'</span>: <span class="number">0</span>, <span class="string">'PYInitial'</span>: <span class="string">'CODERPIG'</span>, <span class="string">'PYQuanPin'</span>: <span class="string">'CoderPig'</span>, <span class="string">'RemarkPYInitial'</span>: <span class="string">''</span>, <span class="string">'RemarkPYQuanPin'</span>: <span class="string">''</span>, <span class="string">'StarFriend'</span>: <span class="number">0</span>, <span class="string">'AppAccountFlag'</span>: <span class="number">0</span>, <span class="string">'Statues'</span>: <span class="number">0</span>, <span class="string">'AttrStatus'</span>: <span class="number">33783847</span>, <span class="string">'Province'</span>: <span class="string">'广东'</span>, <span class="string">'City'</span>: <span class="string">'江门'</span>, <span class="string">'Alias'</span>: <span class="string">''</span>, <span class="string">'SnsFlag'</span>: <span class="number">17</span>, <span class="string">'UniFriend'</span>: <span class="number">0</span>, <span class="string">'DisplayName'</span>: <span class="string">''</span>, <span class="string">'ChatRoomId'</span>: <span class="number">0</span>, <span class="string">'KeyWord'</span>: <span class="string">'zpj'</span>, <span class="string">'EncryChatRoomId'</span>: <span class="string">''</span>, <span class="string">'IsOwner'</span>: <span class="number">0</span>&#125;&gt;, <span class="string">'Type'</span>: <span class="string">'Text'</span>, <span class="string">'Text'</span>: <span class="string">'123'</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>分析下要采集的数据，<strong>MsgId</strong>（微信信息的标识，用来作为键），<strong>NickName</strong>（发送者的用户名），<strong>Content</strong>（信息内容），<strong>CreateTime</strong>（创建时间）， <strong>Type</strong>（信息类型）。接着是群聊信息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">群聊信息:  &#123;<span class="string">'MsgId'</span>: <span class="string">'3177606925001563512'</span>, <span class="string">'FromUserName'</span>: <span class="string">'@@16521484d35b2fe9c953282d98ec4f11456607924b3a7cc6d7fb671fe7e3081c'</span>, <span class="string">'ToUserName'</span>: <span class="string">'@913c3124d973db6ae25924bd0598b48a0028e0c2d01e18d8095cc6fd58db116b'</span>, <span class="string">'MsgType'</span>: <span class="number">1</span>, <span class="string">'Content'</span>: <span class="string">'嘿嘿'</span>, <span class="string">'Status'</span>: <span class="number">3</span>, <span class="string">'ImgStatus'</span>: <span class="number">1</span>, <span class="string">'CreateTime'</span>: <span class="number">1533010298</span>, <span class="string">'VoiceLength'</span>: <span class="number">0</span>, <span class="string">'PlayLength'</span>: <span class="number">0</span>, <span class="string">'FileName'</span>: <span class="string">''</span>, <span class="string">'FileSize'</span>: <span class="string">''</span>, <span class="string">'MediaId'</span>: <span class="string">''</span>, <span class="string">'Url'</span>: <span class="string">''</span>, <span class="string">'AppMsgType'</span>: <span class="number">0</span>, <span class="string">'StatusNotifyCode'</span>: <span class="number">0</span>, <span class="string">'StatusNotifyUserName'</span>: <span class="string">''</span>, <span class="string">'RecommendInfo'</span>: &#123;<span class="string">'UserName'</span>: <span class="string">''</span>, <span class="string">'NickName'</span>: <span class="string">''</span>, <span class="string">'QQNum'</span>: <span class="number">0</span>, <span class="string">'Province'</span>: <span class="string">''</span>, <span class="string">'City'</span>: <span class="string">''</span>, <span class="string">'Content'</span>: <span class="string">''</span>, <span class="string">'Signature'</span>: <span class="string">''</span>, <span class="string">'Alias'</span>: <span class="string">''</span>, <span class="string">'Scene'</span>: <span class="number">0</span>, <span class="string">'VerifyFlag'</span>: <span class="number">0</span>, <span class="string">'AttrStatus'</span>: <span class="number">0</span>, <span class="string">'Sex'</span>: <span class="number">0</span>, <span class="string">'Ticket'</span>: <span class="string">''</span>, <span class="string">'OpCode'</span>: <span class="number">0</span>&#125;, <span class="string">'ForwardFlag'</span>: <span class="number">0</span>, <span class="string">'AppInfo'</span>: &#123;<span class="string">'AppID'</span>: <span class="string">''</span>, <span class="string">'Type'</span>: <span class="number">0</span>&#125;, <span class="string">'HasProductId'</span>: <span class="number">0</span>, <span class="string">'Ticket'</span>: <span class="string">''</span>, <span class="string">'ImgHeight'</span>: <span class="number">0</span>, <span class="string">'ImgWidth'</span>: <span class="number">0</span>, <span class="string">'SubMsgType'</span>: <span class="number">0</span>, <span class="string">'NewMsgId'</span>: <span class="number">3177606925001563512</span>, <span class="string">'OriContent'</span>: <span class="string">''</span>, <span class="string">'EncryFileName'</span>: <span class="string">''</span>, <span class="string">'ActualNickName'</span>: <span class="string">'易♂建♂联'</span>, <span class="string">'IsAt'</span>: <span class="keyword">False</span>, <span class="string">'ActualUserName'</span>: <span class="string">'@8fd8b5b2bd0862ed5d0d573bc6c08362'</span>, <span class="string">'User'</span>:</span><br></pre></td></tr></table></figure>
+<p>同样分析下要采集的数据，<strong>MsgId</strong>（微信信息的标识），<strong>ActualNickName</strong>（发送者群名称），<strong>Content</strong>（信息内容），<strong>CreateTime</strong>（创建时间）， <strong>Type</strong>（信息类型）。改下我们的程序，把这些都提取打印出来。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itchat</span><br><span class="line"><span class="keyword">from</span> itchat.content <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 好友信息监听</span></span><br><span class="line"><span class="meta">@itchat.msg_register([TEXT, PICTURE, RECORDING, ATTACHMENT, VIDEO], isFriendChat=True)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_friend_msg</span><span class="params">(msg)</span>:</span></span><br><span class="line">    msg_id = msg[<span class="string">'MsgId'</span>]</span><br><span class="line">    msg_from_user = msg[<span class="string">'User'</span>][<span class="string">'NickName'</span>]</span><br><span class="line">    msg_content = msg[<span class="string">'Content'</span>]</span><br><span class="line">    msg_create_time = msg[<span class="string">'CreateTime'</span>]</span><br><span class="line">    msg_type = msg[<span class="string">'Type'</span>]</span><br><span class="line">    print(<span class="string">"收到信息: "</span>, msg_id, msg_from_user, msg_content, msg_create_time,msg_type)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 群聊信息监听</span></span><br><span class="line"><span class="meta">@itchat.msg_register([TEXT, PICTURE, RECORDING, ATTACHMENT, VIDEO], isGroupChat=True)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">information</span><span class="params">(msg)</span>:</span></span><br><span class="line">    msg_id = msg[<span class="string">'MsgId'</span>]</span><br><span class="line">    msg_from_user = msg[<span class="string">'ActualNickName'</span>]</span><br><span class="line">    msg_content = msg[<span class="string">'Content'</span>]</span><br><span class="line">    msg_create_time = msg[<span class="string">'CreateTime'</span>]</span><br><span class="line">    msg_type = msg[<span class="string">'Type'</span>]</span><br><span class="line">    print(<span class="string">"群聊信息: "</span>,msg_id, msg_from_user, msg_content, msg_create_time,msg_type)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    itchat.auto_login()</span><br><span class="line">    itchat.run()</span><br></pre></td></tr></table></figure>
+<p>代码执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">群聊信息:  2254622820807367335 胡小韬 对手公司 1533023277 Text</span><br><span class="line">群聊信息:  1765614482944449471 xia_ang 还有自干五 1533023285 Text</span><br><span class="line">好友信息:  615083621872361432 CoderPig 哈哈 1533023293 Text</span><br><span class="line">好友信息:  7292909308782687092 CoderPig 你好哦 1533023302 Text</span><br></pre></td></tr></table></figure>
+<h2 id="十、验证不同信息类型和对应处理方式"><a href="#十、验证不同信息类型和对应处理方式" class="headerlink" title="十、验证不同信息类型和对应处理方式"></a>十、验证不同信息类型和对应处理方式</h2><p>嗯，信息提取成功，接下来要验证的是不同的信息类型和对应的处理方式，文字，图片(表情)，音频，视频，文件五种，后面四种都需要下载到本地，itchat中提供了一个下载文件的方法<strong>msg<a href="文件存储路径">‘Text’</a></strong>，调用这个方法即可完成文件下载，修改后的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itchat</span><br><span class="line"><span class="keyword">from</span> itchat.content <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件临时存储页</span></span><br><span class="line">rec_tmp_dir = os.path.join(os.getcwd(), <span class="string">'tmp/'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 存储数据的字典</span></span><br><span class="line">rec_msg_dict = &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 好友信息监听</span></span><br><span class="line"><span class="meta">@itchat.msg_register([TEXT, PICTURE, RECORDING, ATTACHMENT, VIDEO], isFriendChat=True)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_friend_msg</span><span class="params">(msg)</span>:</span></span><br><span class="line">    msg_id = msg[<span class="string">'MsgId'</span>]</span><br><span class="line">    msg_from_user = msg[<span class="string">'User'</span>][<span class="string">'NickName'</span>]</span><br><span class="line">    msg_content = <span class="string">''</span></span><br><span class="line">    <span class="comment"># 收到信息的时间</span></span><br><span class="line">    msg_time_rec = time.strftime(<span class="string">"%Y-%m-%d %H:%M%S"</span>, time.localtime())</span><br><span class="line">    msg_create_time = msg[<span class="string">'CreateTime'</span>]</span><br><span class="line">    msg_type = msg[<span class="string">'Type'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> msg[<span class="string">'Type'</span>] == <span class="string">'Text'</span>:</span><br><span class="line">        msg_content = msg[<span class="string">'Content'</span>]</span><br><span class="line">    <span class="keyword">elif</span> msg[<span class="string">'Type'</span>] == <span class="string">'Picture'</span> \</span><br><span class="line">            <span class="keyword">or</span> msg[<span class="string">'Type'</span>] == <span class="string">'Recording'</span> \</span><br><span class="line">            <span class="keyword">or</span> msg[<span class="string">'Type'</span>] == <span class="string">'Video'</span> \</span><br><span class="line">            <span class="keyword">or</span> msg[<span class="string">'Type'</span>] == <span class="string">'Attachment'</span>:</span><br><span class="line">        msg_content = <span class="string">r""</span> + msg[<span class="string">'FileName'</span>]</span><br><span class="line">        msg[<span class="string">'Text'</span>](rec_tmp_dir + msg[<span class="string">'FileName'</span>])</span><br><span class="line">    rec_msg_dict.update(&#123;</span><br><span class="line">        msg_id: &#123;</span><br><span class="line">            <span class="string">'msg_from_user'</span>: msg_from_user,</span><br><span class="line">            <span class="string">'msg_time_rec'</span>: msg_time_rec,</span><br><span class="line">            <span class="string">'msg_create_time'</span>: msg_create_time,</span><br><span class="line">            <span class="string">'msg_type'</span>: msg_type,</span><br><span class="line">            <span class="string">'msg_content'</span>: msg_content</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    print(msg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 群聊信息监听</span></span><br><span class="line"><span class="meta">@itchat.msg_register([TEXT, PICTURE, RECORDING, ATTACHMENT, VIDEO], isGroupChat=True)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">information</span><span class="params">(msg)</span>:</span></span><br><span class="line">    msg_id = msg[<span class="string">'MsgId'</span>]</span><br><span class="line">    msg_from_user = msg[<span class="string">'ActualNickName'</span>]</span><br><span class="line">    msg_content = <span class="string">''</span></span><br><span class="line">    <span class="comment"># 收到信息的时间</span></span><br><span class="line">    msg_time_rec = time.strftime(<span class="string">"%Y-%m-%d %H:%M%S"</span>, time.localtime())</span><br><span class="line">    msg_create_time = msg[<span class="string">'CreateTime'</span>]</span><br><span class="line">    msg_type = msg[<span class="string">'Type'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> msg[<span class="string">'Type'</span>] == <span class="string">'Text'</span>:</span><br><span class="line">        msg_content = msg[<span class="string">'Content'</span>]</span><br><span class="line">    <span class="keyword">elif</span> msg[<span class="string">'Type'</span>] == <span class="string">'Picture'</span> \</span><br><span class="line">            <span class="keyword">or</span> msg[<span class="string">'Type'</span>] == <span class="string">'Recording'</span> \</span><br><span class="line">            <span class="keyword">or</span> msg[<span class="string">'Type'</span>] == <span class="string">'Video'</span> \</span><br><span class="line">            <span class="keyword">or</span> msg[<span class="string">'Type'</span>] == <span class="string">'Attachment'</span>:</span><br><span class="line">        msg_content = <span class="string">r""</span> + msg[<span class="string">'FileName'</span>]</span><br><span class="line">        msg[<span class="string">'Text'</span>](rec_tmp_dir + msg[<span class="string">'FileName'</span>])</span><br><span class="line">    rec_msg_dict.update(&#123;</span><br><span class="line">        msg_id: &#123;</span><br><span class="line">            <span class="string">'msg_from_user'</span>: msg_from_user,</span><br><span class="line">            <span class="string">'msg_time_rec'</span>: msg_time_rec,</span><br><span class="line">            <span class="string">'msg_create_time'</span>: msg_create_time,</span><br><span class="line">            <span class="string">'msg_type'</span>: msg_type,</span><br><span class="line">            <span class="string">'msg_content'</span>: msg_content</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    print(msg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(rec_tmp_dir):</span><br><span class="line">        os.mkdir(rec_tmp_dir)</span><br><span class="line">    itchat.auto_login()</span><br><span class="line">    itchat.run()</span><br></pre></td></tr></table></figure>
+<h2 id="十一、监控撤回信息和数据提取"><a href="#十一、监控撤回信息和数据提取" class="headerlink" title="十一、监控撤回信息和数据提取"></a>十一、监控撤回信息和数据提取</h2><p>接着到撤回信息的监控，撤回的信息类型是<strong>NOTE</strong>，我们监听下看看，看看撤回的信息具体内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">'MsgId'</span>: <span class="string">'7399110162640182490'</span>, <span class="string">'FromUserName'</span>: <span class="string">'@9c1a8bf4e28771a6b3ab635991dea2a1'</span>, <span class="string">'ToUserName'</span>: <span class="string">'@49d1d90b90371099297a08da1009f3cdd042f21194239ef47b60e8f0b52e4553'</span>, <span class="string">'MsgType'</span>: <span class="number">10002</span>, <span class="string">'Content'</span>: <span class="string">'&lt;sysmsg type="revokemsg"&gt;&lt;revokemsg&gt;&lt;session&gt;zpj779878443&lt;/session&gt;&lt;oldmsgid&gt;1625723544&lt;/oldmsgid&gt;&lt;msgid&gt;3154925139554625499&lt;/msgid&gt;&lt;replacemsg&gt;&lt;![CDATA["CoderPig" 撤回了一条消息]]&gt;&lt;/replacemsg&gt;&lt;/revokemsg&gt;&lt;/sysmsg&gt;'</span>, <span class="string">'Status'</span>: <span class="number">4</span>, <span class="string">'ImgStatus'</span>: <span class="number">1</span>, <span class="string">'CreateTime'</span>: <span class="number">1533103679</span>, <span class="string">'VoiceLength'</span>: <span class="number">0</span>, <span class="string">'PlayLength'</span>: <span class="number">0</span>, <span class="string">'FileName'</span>: <span class="string">''</span>, <span class="string">'FileSize'</span>: <span class="string">''</span>, <span class="string">'MediaId'</span>: <span class="string">''</span>, <span class="string">'Url'</span>: <span class="string">''</span>, <span class="string">'AppMsgType'</span>: <span class="number">0</span>, <span class="string">'StatusNotifyCode'</span>: <span class="number">0</span>, <span class="string">'StatusNotifyUserName'</span>: <span class="string">''</span>, <span class="string">'RecommendInfo'</span>: &#123;<span class="string">'UserName'</span>: <span class="string">''</span>, <span class="string">'NickName'</span>: <span class="string">''</span>, <span class="string">'QQNum'</span>: <span class="number">0</span>, <span class="string">'Province'</span>: <span class="string">''</span>, <span class="string">'City'</span>: <span class="string">''</span>, <span class="string">'Content'</span>: <span class="string">''</span>, <span class="string">'Signature'</span>: <span class="string">''</span>, <span class="string">'Alias'</span>: <span class="string">''</span>, <span class="string">'Scene'</span>: <span class="number">0</span>, <span class="string">'VerifyFlag'</span>: <span class="number">0</span>, <span class="string">'AttrStatus'</span>: <span class="number">0</span>, <span class="string">'Sex'</span>: <span class="number">0</span>, <span class="string">'Ticket'</span>: <span class="string">''</span>, <span class="string">'OpCode'</span>: <span class="number">0</span>&#125;, <span class="string">'ForwardFlag'</span>: <span class="number">0</span>, <span class="string">'AppInfo'</span>: &#123;<span class="string">'AppID'</span>: <span class="string">''</span>, <span class="string">'Type'</span>: <span class="number">0</span>&#125;, <span class="string">'HasProductId'</span>: <span class="number">0</span>, <span class="string">'Ticket'</span>: <span class="string">''</span>, <span class="string">'ImgHeight'</span>: <span class="number">0</span>, <span class="string">'ImgWidth'</span>: <span class="number">0</span>, <span class="string">'SubMsgType'</span>: <span class="number">0</span>, <span class="string">'NewMsgId'</span>: <span class="number">7399110162640182490</span>, <span class="string">'OriContent'</span>: <span class="string">''</span>, <span class="string">'EncryFileName'</span>: <span class="string">''</span>, <span class="string">'User'</span>: &lt;User: &#123;<span class="string">'MemberList'</span>: &lt;ContactList: []&gt;, <span class="string">'Uin'</span>: <span class="number">0</span>, <span class="string">'UserName'</span>: <span class="string">'@9c1a8bf4e28771a6b3ab635991dea2a1'</span>, <span class="string">'NickName'</span>: <span class="string">'CoderPig'</span>, <span class="string">'HeadImgUrl'</span>: <span class="string">'/cgi-bin/mmwebwx-bin/webwxgeticon?seq=625711027&amp;username=@9c1a8bf4e28771a6b3ab635991dea2a1&amp;skey=@crypt_2d4a1972_e0963a9b961045c2e06293043f1c98a8'</span>, <span class="string">'ContactFlag'</span>: <span class="number">3</span>, <span class="string">'MemberCount'</span>: <span class="number">0</span>, <span class="string">'RemarkName'</span>: <span class="string">''</span>, <span class="string">'HideInputBarFlag'</span>: <span class="number">0</span>, <span class="string">'Sex'</span>: <span class="number">1</span>, <span class="string">'Signature'</span>: <span class="string">'不服气，就用行动去证明，少说多做...2018.7.29'</span>, <span class="string">'VerifyFlag'</span>: <span class="number">0</span>, <span class="string">'OwnerUin'</span>: <span class="number">0</span>, <span class="string">'PYInitial'</span>: <span class="string">'CODERPIG'</span>, <span class="string">'PYQuanPin'</span>: <span class="string">'CoderPig'</span>, <span class="string">'RemarkPYInitial'</span>: <span class="string">''</span>, <span class="string">'RemarkPYQuanPin'</span>: <span class="string">''</span>, <span class="string">'StarFriend'</span>: <span class="number">0</span>, <span class="string">'AppAccountFlag'</span>: <span class="number">0</span>, <span class="string">'Statues'</span>: <span class="number">0</span>, <span class="string">'AttrStatus'</span>: <span class="number">33783847</span>, <span class="string">'Province'</span>: <span class="string">'广东'</span>, <span class="string">'City'</span>: <span class="string">'江门'</span>, <span class="string">'Alias'</span>: <span class="string">''</span>, <span class="string">'SnsFlag'</span>: <span class="number">17</span>, <span class="string">'UniFriend'</span>: <span class="number">0</span>, <span class="string">'DisplayName'</span>: <span class="string">''</span>, <span class="string">'ChatRoomId'</span>: <span class="number">0</span>, <span class="string">'KeyWord'</span>: <span class="string">'zpj'</span>, <span class="string">'EncryChatRoomId'</span>: <span class="string">''</span>, <span class="string">'IsOwner'</span>: <span class="number">0</span>&#125;&gt;, <span class="string">'Type'</span>: <span class="string">'Note'</span>, <span class="string">'Text'</span>: <span class="string">'"CoderPig" 撤回了一条消息'</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>首先是判断系统信息是默认撤回了一条信息，内容是： </p>
+<p>显示判断是否是撤回的信息，从上面可以看到这样的串字符串：&lt;![CDATA[“CoderPig” 撤回了一条消息]]&gt;，我们只需要写个正则判断是否有这样的内容，有说明是撤回的信息提醒，接着找撤回的信息MsgId，在上面这串信息的前面就是了：<msgid>3154925139554625499</msgid>，同样用正则提取。接着要做的就是拿着MsgId去查存消息的字典，根据信息类型拼接文字或文字加文件，然后发送给文件传输助手。具体代码如下：！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@itchat.msg_register([NOTE], isFriendChat=True, isGroupChat=True)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">revoke_msg</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> revoke_msg_compile.search(msg[<span class="string">'Content'</span>]) <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">        old_msg_id = extract_msgid_compile.search(msg[<span class="string">'Content'</span>]).group(<span class="number">1</span>)</span><br><span class="line">        old_msg = rec_msg_dict.get(old_msg_id, &#123;&#125;)</span><br><span class="line">        <span class="comment"># 先发送一条文字信息</span></span><br><span class="line">        itchat.send_msg(str(old_msg.get(<span class="string">'msg_from_user'</span>) + <span class="string">"撤回了一条信息："</span></span><br><span class="line">                            + old_msg.get(<span class="string">'msg_content'</span>)), toUserName=<span class="string">"filehelper"</span>)</span><br><span class="line">        <span class="comment"># 判断文msg_content是否存在，不存在说明可能是</span></span><br><span class="line">        <span class="keyword">if</span> os.path.exists(os.path.join(rec_tmp_dir, old_msg.get(<span class="string">'msg_content'</span>))):</span><br><span class="line">            <span class="keyword">if</span> old_msg.get(<span class="string">'msg_type'</span>) == <span class="string">'Picture'</span>:</span><br><span class="line">                itchat.send_image(os.path.join(rec_tmp_dir, old_msg.get(<span class="string">'msg_content'</span>)),</span><br><span class="line">                                  toUserName=<span class="string">"filehelper"</span>)</span><br><span class="line">            <span class="keyword">elif</span> old_msg.get(<span class="string">'msg_type'</span>) == <span class="string">'Video'</span>:</span><br><span class="line">                itchat.send_video(os.path.join(rec_tmp_dir, old_msg.get(<span class="string">'msg_content'</span>)),</span><br><span class="line">                                  toUserName=<span class="string">"filehelper"</span>)</span><br><span class="line">            <span class="keyword">elif</span> old_msg.get(<span class="string">'msg_type'</span>) == <span class="string">'Attachment'</span> \</span><br><span class="line">                    <span class="keyword">or</span> old_msg.get(<span class="string">'msg_type'</span>) == <span class="string">'Recording'</span>:</span><br><span class="line">                itchat.send_file(os.path.join(rec_tmp_dir, old_msg.get(<span class="string">'msg_content'</span>)),</span><br><span class="line">                                 toUserName=<span class="string">"filehelper"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="十二、定时清理缓存"><a href="#十二、定时清理缓存" class="headerlink" title="十二、定时清理缓存"></a>十二、定时清理缓存</h2><p>另外，我们的信息都是用一个字典存着的，时间长了的话，数据会很多，而且图片文件这些会越攒越多，我们可以添加一个定时任务，比如每隔五分钟清理一下创建时长超过2分钟的信息和对应的文件。相关代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 每隔五种分钟执行一次清理任务</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clear_cache</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 当前时间</span></span><br><span class="line">    cur_time = time.time()</span><br><span class="line">    <span class="comment"># 遍历字典，如果有创建时间超过2分钟(120s)的记录，删除，非文本的话，连文件也删除</span></span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> list(rec_msg_dict.keys()):</span><br><span class="line">        <span class="keyword">if</span> int(cur_time) - int(rec_msg_dict.get(key).get(<span class="string">'msg_create_time'</span>)) &gt; <span class="number">120</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> rec_msg_dict.get(key).get(<span class="string">'msg_type'</span>) == <span class="string">'Text'</span>:</span><br><span class="line">                file_path = os.path.join(rec_tmp_dir, rec_msg_dict.get(key).get(<span class="string">'msg_content'</span>))</span><br><span class="line">                print(file_path)</span><br><span class="line">                <span class="keyword">if</span> os.path.exists(file_path):</span><br><span class="line">                    os.remove(file_path)</span><br><span class="line">            rec_msg_dict.pop(key)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始轮询任务</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_schedule</span><span class="params">()</span>:</span></span><br><span class="line">    sched.add_job(clear_cache, <span class="string">'interval'</span>, minutes=<span class="number">2</span>)</span><br><span class="line">    sched.start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 退出停止所有任务并清空缓存文件夹</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">after_logout</span><span class="params">()</span>:</span></span><br><span class="line">    sched.shutdown()</span><br><span class="line">    shutil.rmtree(rec_tmp_dir)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    sched = BlockingScheduler()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(rec_tmp_dir):</span><br><span class="line">        os.mkdir(rec_tmp_dir)</span><br><span class="line">    itchat.auto_login(exitCallback=after_logout)</span><br><span class="line">    itchat.run(blockThread=<span class="keyword">False</span>)</span><br><span class="line">    start_schedule()</span><br></pre></td></tr></table></figure>
+<p>感谢：</p>
+<p><a href="https://blog.csdn.net/fxbin123/article/details/80428216" target="_blank" rel="noopener">https://blog.csdn.net/fxbin123/article/details/80428216</a></p>
+<p><a href="https://www.kancloud.cn/turing/www-tuling123-com/718227" target="_blank" rel="noopener">https://www.kancloud.cn/turing/www-tuling123-com/718227</a></p>
+<p><a href="https://www.cnblogs.com/sunshine-long/p/8522175.html" target="_blank" rel="noopener">https://www.cnblogs.com/sunshine-long/p/8522175.html</a></p>
+<p><a href="https://www.shiyanlou.com/courses/684/labs/2237/document/#一、课程介绍" target="_blank" rel="noopener">https://www.shiyanlou.com/courses/684/labs/2237/document/#%E4%B8%80%E3%80%81%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D</a></p>
+<p><a href="https://github.com/littlecodersh/ItChat" target="_blank" rel="noopener">https://github.com/littlecodersh/ItChat</a></p>
+<p><a href="https://blog.csdn.net/coder_pig/article/details/81357810#commentsedit" target="_blank" rel="noopener">https://blog.csdn.net/coder_pig/article/details/81357810#commentsedit</a></p>
+<h2 id="十三、部署到云服务器实现24小时在线陪聊"><a href="#十三、部署到云服务器实现24小时在线陪聊" class="headerlink" title="十三、部署到云服务器实现24小时在线陪聊"></a>十三、部署到云服务器实现24小时在线陪聊</h2><p>以上都是在本地进行测试，电脑不可能24小时开着，浪费电浪费钱。故讲本脚本上云。即上云服务器。<br>1、百度云服务器<br>我购买的是百度云服务器，采用新注册的账号，有折扣活动，三个月五十几，配置1核1G，已经完全够用，系统是CentOs7，里面自带的python版本是2.7（如非特殊需要，可以暂时不用下载最新版的python，我就是因为想下载最新版本的python，结果搞来搞去，把服务器搞坏了，打电话给了百度云客服，工程师很快给我解决了，我重新安装了下系统后决定用系统自带的python版本，几步轻松搞定）。</p>
+<p>2、服务器默认是没有安装pip的，所以先要安装pip</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">$ python get-pip.py</span><br><span class="line">$ pip -V　　<span class="comment">#查看pip版本</span></span><br></pre></td></tr></table></figure>
+<p>接下来就可以随便pip安装东西了<br>按照上面的步骤安装itchat，登录的时候，可以添加enableCmdQR=True参数，让二维码显示到命令行上，另外部分系统可能字符宽度有出入，可以通过把enableCmdQR赋值为特定的倍数进行调整（我设置的是2）。</p>
+<p>3、讲脚本保存为.py文件<br>下载资源：评论留“我要资源” ，即可，我会发给你<br>或者直接点击：<a href="https://download.csdn.net/download/qq_43270074/11244274" target="_blank" rel="noopener">下载资源</a><br>PS：资源理论上是可以直接运行的，如果有不能运行的情况欢迎咨询我。<br><img src="https://img-blog.csdnimg.cn/20190617005408507.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="十五、成果展示"><a href="#十五、成果展示" class="headerlink" title="十五、成果展示"></a>十五、成果展示</h2><p><img src="https://img-blog.csdnimg.cn/20190617010507281.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190617010528329.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190617010555499.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190617010658475.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190617010724171.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="十六、关于我"><a href="#十六、关于我" class="headerlink" title="十六、关于我"></a>十六、关于我</h2><p>-——-</p>
+<p><strong># 本文章已同步至我的GitHub仓库：<a href="https://github.com/freestylefly/javaStudy" target="_blank" rel="noopener">Javastudy</a>,期待您的加入:blush:</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/2019061700583138.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong># 本文章已同步至<a href="https://freestylefly.github.io/">苍何的个人博客</a>,可以直接在博客上留言哦:blush:</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20190617005714728.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="苍 何 wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+	
+	
+   
+		<div>
+			<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+		</div>
+   
+	
+	
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="苍 何 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="苍 何 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>苍 何</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://freestylefly.github.io/2019/06/15/微信聊天机器人/" title="python制作微信聊天机器人">http://freestylefly.github.io/2019/06/15/微信聊天机器人/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/微信/" rel="tag"><i class="fa fa-tag"></i> 微信</a>
+          
+            <a href="/tags/聊天/" rel="tag"><i class="fa fa-tag"></i> 聊天</a>
+          
+            <a href="/tags/机器人/" rel="tag"><i class="fa fa-tag"></i> 机器人</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/04/解忧杂货店/" rel="next" title="解忧杂货店">
+                <i class="fa fa-chevron-left"></i> 解忧杂货店
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/23/win10环境下MySql（8.0.16最新版本）安装过程以及遇到的问题/" rel="prev" title="win10环境下MySql（8.0.16最新版本）安装过程以及遇到的问题">
+                win10环境下MySql（8.0.16最新版本）安装过程以及遇到的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDk5My8yMTUxMw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="苍 何">
+            
+              <p class="site-author-name" itemprop="name">苍 何</p>
+              <p class="site-description motion-element" itemprop="description">你若晴天，我便安好。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">63</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">66</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/freestylefly" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://blog.csdn.net/qq_43270074" target="_blank" title="CSDN"><i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3866366671/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="微博"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/yun-fan-80-64/activities" target="_blank" title="知乎"><i class="fa fa-fw fa-twitter"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/enfangzhong" target="_blank" title="公众号"><i class="fa fa-fw fa-facebook"></i>公众号</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="2689458656@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lruihao.cn/" title="博采众长" target="_blank">博采众长</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.leridy.pw/" title="乐余地" target="_blank">乐余地</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://tmy123.com/" title="同盟源" target="_blank">同盟源</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          <marquee>
+	<a href="/links.html">
+	<font size="4" face="STXingkai">
+		<font color="#FF0000">欢</font>
+		<font color="#E80017">迎</font>
+		<font color="#D1002E">点</font>
+		<font color="#BA0045">我</font>
+		<font color="#A3005C">互</font>
+		<font color="#A00073">换</font>
+		<font color="#A0008A">友</font>
+		<font color="#A000A1">链</font>
+		<font color="#A000B8">哦</font>
+		<font color="#A000CF">~</font>
+		<font color="#A000E6">~</font>
+	</font>
+	</a>
+</marquee>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、前言"><span class="nav-number">2.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、itchat库详解"><span class="nav-number">3.</span> <span class="nav-text">二、itchat库详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Python下载与安装"><span class="nav-number">4.</span> <span class="nav-text">三、Python下载与安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、itchat库下载"><span class="nav-number">5.</span> <span class="nav-text">四、itchat库下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、简单示例"><span class="nav-number">6.</span> <span class="nav-text">五、简单示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、群聊"><span class="nav-number">7.</span> <span class="nav-text">六、群聊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、定时发送消息"><span class="nav-number">8.</span> <span class="nav-text">七、定时发送消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、集成图灵API制作聊天机器人"><span class="nav-number">9.</span> <span class="nav-text">八、集成图灵API制作聊天机器人</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、监控接收到的数据"><span class="nav-number">10.</span> <span class="nav-text">九、监控接收到的数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十、验证不同信息类型和对应处理方式"><span class="nav-number">11.</span> <span class="nav-text">十、验证不同信息类型和对应处理方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十一、监控撤回信息和数据提取"><span class="nav-number">12.</span> <span class="nav-text">十一、监控撤回信息和数据提取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十二、定时清理缓存"><span class="nav-number">13.</span> <span class="nav-text">十二、定时清理缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十三、部署到云服务器实现24小时在线陪聊"><span class="nav-number">14.</span> <span class="nav-text">十三、部署到云服务器实现24小时在线陪聊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十五、成果展示"><span class="nav-number">15.</span> <span class="nav-text">十五、成果展示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十六、关于我"><span class="nav-number">16.</span> <span class="nav-text">十六、关于我</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+
+      
+
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DBUtils/">DBUtils</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eclipse/">Eclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emulator/">Emulator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/">JDBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jestem/">Jestem</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/">MySql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/">Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/">TCP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/">VSCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bean/">bean</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c3p0/">c3p0</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/idea/">idea</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/internit/">internit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multithreading/">multithreading</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webstorm/">webstorm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xml/">xml</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题/">主题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/习惯/">习惯</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱码/">乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/云服务器/">云服务器</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优点/">优点</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/反射/">反射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信/">微信</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拦截器/">拦截器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/改进/">改进</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器人/">机器人</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/标签库/">标签库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/流/">流</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缺点/">缺点</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/聊天/">聊天</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自我/">自我</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟机/">虚拟机</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语音/">语音</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/请求头/">请求头</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/资料/">资料</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高效能/">高效能</a><span class="tag-list-count">1</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
+
+
+
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">苍 何</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://github.com/freestylefly">GitHub</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<!--
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+-->
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://github.com/freestylefly">CangHe</a> v6.3.0</div>
+
+
+
+
+
+<font color="MediumPurple" face="STLiti">
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共135.9k字|</span>
+</div>
+</font>
+
+<font color="MediumPurple" face="STLiti"><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span></font>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("06/28/2019 22:00:00");//此处为建站时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "已苟活："+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      访问用户：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

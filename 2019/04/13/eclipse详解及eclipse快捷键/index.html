@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+
+  <script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/favicon-32x32-next.png?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "d42664d6"
+    });
+  daovoice('update');
+  </script>
+
+  <meta name="description" content="eclipse 详解及eclipse快捷键">
+<meta name="keywords" content="JavaEE,eclipse,快捷键,kuaijiejian">
+<meta property="og:type" content="article">
+<meta property="og:title" content="eclipse 详解及eclipse快捷键">
+<meta property="og:url" content="http://freestylefly.github.io/2019/04/13/eclipse详解及eclipse快捷键/index.html">
+<meta property="og:site_name" content="苍 何">
+<meta property="og:description" content="eclipse 详解及eclipse快捷键">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181208171709586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181208171722276.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2018120817175556.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181208171814403.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181208171828783.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181208171835278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181208171843980.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181208171850337.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181208171858713.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181208171903262.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181208171910875.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://pp8g2fyug.bkt.clouddn.com/github.jpg">
+<meta property="og:image" content="http://pp8g2fyug.bkt.clouddn.com/myblog..png">
+<meta property="og:image" content="http://pp8g2fyug.bkt.clouddn.com/weixingongzhonghao.jpg">
+<meta property="og:image" content="http://pp8g2fyug.bkt.clouddn.com/CSDN.png">
+<meta property="og:updated_time" content="2019-12-21T04:15:16.099Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="eclipse 详解及eclipse快捷键">
+<meta name="twitter:description" content="eclipse 详解及eclipse快捷键">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181208171709586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="苍 何" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://freestylefly.github.io/2019/04/13/eclipse详解及eclipse快捷键/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>eclipse 详解及eclipse快捷键 | 苍 何</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <link rel="stylesheet" href="/dist/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script>
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/freestylefly"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><script>
+ function GetRandomNum(Min,Max)
+  {
+    var Range = Max - Min;
+    var Rand = Math.random();
+    return(Min + Math.round(Rand * Range));
+  }
+function setSidebarMarginTop (headerOffset) {
+    return $('#sidebar').css({ 'margin-top': headerOffset });
+  }
+ function getHeaderOffset () {
+    return $('.header-inner').height() + CONFIG.sidebar.offset;
+  }
+  window.onload=function(){
+    var subtitle = "我翻山越岭，终寻一人等候。W和梦想平等交易，和喧嚣保持距离。W希望你好，希望你顺利，即使小有坎坷，偶遇困顿也能化险为夷。W成熟是给你陌生人看的，逗比是给朋友看的，幼稚是给喜欢的人看的。W不要说了，我不会屈服。W刚刚又没忍住，往宇宙里发送了想你的脑电波。";
+     var mytitle = subtitle.split("W");
+     var max = mytitle.length-1;
+     var index = GetRandomNum(0,max);
+     var text = mytitle[index];
+     $("#helloTitle").html(text);
+     var headOffset = getHeaderOffset();
+     setSidebarMarginTop(headOffset);
+     //动态subtitle设置
+  }
+</script>
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">苍 何</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  
+    <p style="color:#black;font-size:18px;font-family:STXingkai" id="helloTitle" class="site-subtitle"></p>
+  
+
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-love">
+    <a href="/love/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>love</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-loveshow">
+    <a href="/loveshow/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>loveshow</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-lovephoto">
+    <a href="/lovePhoto/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>lovePhoto</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-showlove">
+    <a href="/showLove/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>showLove</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+    <a href="/404/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>公益 404</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://freestylefly.github.io/2019/04/13/eclipse详解及eclipse快捷键/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="苍 何">
+      <meta itemprop="description" content="你若晴天，我便安好。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="苍 何">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">eclipse 详解及eclipse快捷键
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-13 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-13T00:00:00+08:00">2019-04-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-21 12:15:16" itemprop="dateModified" datetime="2019-12-21T12:15:16+08:00">2019-12-21</time>
+              
+            
+          </span>
+
+
+          
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/eclipse/" itemprop="url" rel="index"><span itemprop="name">eclipse</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+            <span class="post-meta-divider">|</span>
+<span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>文章字数： 7,928</span>
+
+<span class="post-meta-divider">|</span>
+<span title="post.min2read"><span class="post-meta-item-icon"><i class="fa fa-clock-o"></i></span>阅读时长： 28分钟</span>
+
+          
+
+          
+
+          
+              <div class="post-description">eclipse 详解及eclipse快捷键</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>eclipse在我们开发中帮了我们很多的忙，其中也有很多的快捷键可以提高我们开发的效率，但是这些快捷快捷键你都知道吗？</p>
+<h2 id="一、eclipse详解"><a href="#一、eclipse详解" class="headerlink" title="一、eclipse详解"></a>一、eclipse详解</h2><p>以下是关于eclipse的中英对照，如果遇到不懂的地方可以做参考</p>
+<p>「File」菜单<br>这个菜单可以建立、储存、关闭、打印、汇入及汇出工作台资源以及结束工作台本身。</p>
+<p>名称<br>     功能 </p>
+<p>New(新建)<br>     建立Java元素或新资源。配置哪些元素会显示在「Window」→「Preferences」的子菜单中。在Java视景中，依预设，会提供项目、套件、类别、接口、来源数据夹、实时运算簿、档案和数据夹的建立动作。 </p>
+<p>Close(关闭)<br>     关闭现行编辑器。如果编辑器中有资料尚未储存，则会显示一个储存要求对话框。 </p>
+<p>Close All(全部关闭)<br>     关闭所有编辑器。如果编辑器中有资料尚未储存，则会显示一个储存要求对话框。 </p>
+<p>Save(储存)<br>     储存现行编辑器的内容。如果编辑器中没有未储存的变更，则会停用。 </p>
+<p>Save As(另存新檔)<br>     以新名称储存现行编辑器中的内容。 </p>
+<p>Save All(全部储存)<br>     储存所有编辑器内容以及未储存的变更。如果没有编辑器中有未储存的变更，则会停用。 </p>
+<p>Revert(回复)<br>     将现行编辑器的内容回复成已储存档案中的内容。如果编辑器中没有未储存的变更，则会停用。 </p>
+<p>Move(移动)<br>     移动资源。如果是Java元素则会停用。如果要移动Java元素，请使用「Refactor」→「Move」（如此会更新档案的所有参照），或使用「Edit」→「Cut/Paste」（如此不会更新参照）。 </p>
+<p>Rename(重新命名)<br>     将资源重新命名。如果是Java元素则会停用。如果要重新命名Java元素，请使用「Refactor」→「Rename」（如此会更新档案的所有参照）。 </p>
+<p>Refresh(重新整理)<br>     以本端档案系统来重新整理所选元素的内容。如果不是从特定选项启动，这个指令会重新整理所有项目。 </p>
+<p>Print(打印)<br>     打印现行编辑器的内容。会在编辑器成为焦点时启用。 </p>
+<p>Switch workspace(切换工作区)<br>     这个指令可以切换至不同的工作区这会重新启动工作台 </p>
+<p>Open external file(开启外部档案)<br>     这个指令可以在文字编辑器中开启不在工作区中的档案 </p>
+<p>Import(汇入)<br>     开启汇入精灵对话框。JDT不会提供任何汇入精灵。 </p>
+<p>Export(汇出)<br>     开启汇出精灵对话框。JDT会提供JAR档汇出精灵和Javadoc产生精灵。 </p>
+<p>Properties(内容)<br>     开启所选元素的「内容」页面。依据Java项目开启Java建置路径页面，且可使用Javadoc位置页面。如果是JAR保存文件，请在这个配置JAR的程序文件附加与Javadoc位置。 </p>
+<p>Recent file list(最近使用的档案清单<br>     「File底端维护了一份最近在工作台中存取的档案的清单只要选取文件名，就可以从「File开启这其中的任何档案。 </p>
+<p>Exit(结束)<br>     结束Eclipse </p>
+<p>「Edit」菜单<br>这个菜单可协助操作编辑器区域中的资源</p>
+<p>名称<br>     功能 </p>
+<p>Undo(复原)<br>     回复成编辑器中的前一次变更 </p>
+<p>Redo(重做)<br>     回复已取消的变更 </p>
+<p>Cut(剪下)<br>     将目前所选取的文字或元素复制到剪贴簿中，并移除元素。就元素而言，在贴到剪贴簿前不会移除。 </p>
+<p>Copy(复制)<br>     将目前所选取的文字或元素复制到剪贴簿中。 </p>
+<p>Paste (贴上)<br>     将目前的内容当成文字贴到编辑器中，或当成同层级或下层元素，贴到目前所选的元素中。 </p>
+<p>Delete(删除)<br>     删除目前的文字或元素选项。 </p>
+<p>Select All(全选)<br>     选取所有的编辑器内容。 </p>
+<p>Find / Replace(寻找/取代)<br>     开启「寻找/取代」对话框。限编辑器。 </p>
+<p>Find Next(寻找下一个)<br>     寻找目前所选文字下一个搜寻结果。限编辑器。 </p>
+<p>Find Previous(寻找上一个)<br>     寻找目前所选文字上一个搜寻结果。限编辑器。 </p>
+<p>Incremental Find Next(增量寻找下一个)<br>     启动增量寻找模式。在呼叫后，请按照状态列中的指示来输入搜寻文字。限编辑器。 </p>
+<p>Incremental Find Previous(增量寻找上一个)<br>     启动增量寻找模式。在呼叫后，请按照状态列中的指示来输入搜寻文字。限编辑器。 </p>
+<p>Add Bookmark(新增书签)<br>     为目前的文字选项或所选取的元素新增书签。 </p>
+<p>Add Task(新增作业)<br>     为目前的文字选项或所选取的元素新增使用者定义的作业。 </p>
+<p>Expand Selection to(展开选项至)<br>     n         含括元素：选取程序代码中的含括表示式、区块、方法。这个动作会注意Java语法。如果程序代码的语法有错，可能无法运作正常。（上移键） </p>
+<p>n         下一个元素：选取现行与下一个元素。（右移键）<br>n         上一个元素：选取现行与上一个元素（左移键）<br>n         还原前次的选择：在呼叫展开选项至之后，还原先前的选项。（下移键）<br>Show Tooltip Description(显示工具提示说明)<br>     以浮动说明方式显示出现在现行光标位置上的值。对话框可以卷动，因而不会缩短说明。 </p>
+<p>Content Assist(内容辅助)<br>     在现行光标位置开启一个内容辅助对话框，以显示Java程序代码的辅助提议与范本。请参阅「模板」喜好设定页面，以取得可用的模板（「Window」→「Preferences」→「Java」→「Editor」→「Templates」），然后移至「编辑器」喜好设定页面（「Window」→「Preferences」→「Java」→「Editor」→「Code Assist」），来配置程序代码辅助的行为。 </p>
+<p>Quick Fix(快速修正)<br>     如果光标位于有出现问题指示之处，则这个动作会在现行光标处开启一个内容辅助对话框，以提供可能的更正动作。 </p>
+<p>Parameter Hints(参数提示)<br>     如果光标位于方法参照的参数规格处，这个动作会以浮动说明的方式显示参数类型信息。现行光标处的参数会以粗体字显示。 </p>
+<p>Encoding(编码)<br>     切换目前所示文字内容的编码。 </p>
+<p>「Source」菜单</p>
+<p>名称<br>     功能 </p>
+<p>Toggle Comment(批注)<br>     标注出内含现行选择项的所有字行。 </p>
+<p>Add Block Comment(批注区块)<br>     标注出内含现行选择项的区块。 </p>
+<p>Remove Block Comment(解除批注区块)<br>     取消标注内含现行选择项的区块。 </p>
+<p>Shift Right(向右移位)<br>     增加目前所选字行的内缩层次。只有在选择项涵盖多行或一整行时才会启用。 </p>
+<p>Shift Left(向左移位)<br>     减少目前所选字行的内缩层次。只有在选择项涵盖多行或一整行时才会启用。 </p>
+<p>Format(格式)<br>     可使用程序代码格式制作器，来设定目前文字选择项的格式。格式设定选项是在「Code Formatter」喜好设定页面（「Window」→「Preferences」→「Java」→Code Formatter））中配置 </p>
+<p>Format Element(格式成员)<br>     格式化成员 </p>
+<p>Sort Members(排序成员)<br>     「Window」→「Preferences」→「Java」→「Appearance」→「Members Sort Order」中指定的排序次序，来排序类型中的成员 </p>
+<p>Organize Imports(组织汇入)<br>     组织目前开启或所选编译单元中的汇入宣告。会移除不必要的汇入宣告，且会按照「Organize Import」喜好设定页面（「Window」→「Preferences」→「Java」→「Organize Import」）中的指定，来排列必要的汇入宣告。「Organize Import」可执行于不完整的程序文件上，并且会在所参照的类型名称无法唯一对映至现行项目中的某个类型时提示。 </p>
+<p>也可以组织多个编译单元，其做法是对某个套件呼叫动作，或选取一组编译单元。<br>Add Import(新增汇入)<br>     为目前所选的类型参照建立一项汇入宣告。如果类型参照完整，则会移除资格。如果所参照的类型名称无法唯一对映至现行项目中的某个类型，将会提示指定正确的类型。「Add Import」会试着遵循「Organize Import」喜好设定页面中指定的汇入顺序。 </p>
+<p>Override/Implement Methods(置换/实作方法)<br>     会开启「Override Method」对话框，可以置换或实作现行类型中的方法。适用于类型或类型中的某个文字选择项。 </p>
+<p>Generate Getter and Setter(产生Getter和Setter)<br>     开启「Generate Getter and Setter」对话框，可以为现行类型中的字段，建立Getter和Setter。适用于字段与类型或类型中的某个文字选择项。 </p>
+<p>Generate Delegate Methods(产生委派方法)<br>     开启「Generate Delegate Methods」对话框，可以为现行类型中的字段建立方法委派。可用在字段。 </p>
+<p>Add Constructor from Superclass(新增Super类别中的建构子)<br>     为目前所选的类型新增Super类别中所定义的建构子。适用于类型或类型中的某个文字选择项。 </p>
+<p>Surround with try/catch(以try/catch包覆)<br>     针对所选的陈述式，评估所有必须捕捉到的异常状况。这些表示式会包覆try catch区块。可以使用编辑菜单中的展开选项至，以取得有效的选项范围。 </p>
+<p>Externalize Strings(将字符串提出)<br>     开启「Externalize Strings」精灵。这个精灵可以藉由会存取内容档的陈述式，来更换程序代码中的所有字符串。 </p>
+<p>Find Strings to Externalize(寻找要提出的字符串)<br>     会出现一个对话框，其中显示未提出字符串数目的摘要。适用于项目、来源资料夹与套件。 </p>
+<p>Convert Line Delimiters To(将行定界字符转换成)<br>     在目前开启的编辑器中，变更所有行定界字符，而采用下列操作系统中所用的行定界字符： </p>
+<p>n         CRLF(Windows)<br>n         LF（Unix、MacOSX）<br>n         CR（传统MacOS）<br>Java编辑器容许混合使用行定界字符。不过，其它某些工具会要求使用和OS一致的行定界字符，或者要求至少行定界字符要一致。</p>
+<p>「Refactor」菜单<br>重构指令也可以在一些视图的快速菜单与Java编辑器中找到。</p>
+<p>名称<br>     功能 </p>
+<p>Undo(复原)<br>     「Undo」前次的重构作业。重构复原缓冲区，共在执行重构后程序文件未变更的状况下有效。 </p>
+<p>Redo(重做)<br>     重做前次复原的重构作业。重构复原/重做缓冲区的有效期，仅限于执行重构后到没有其它程序文件变更的这段时间。 </p>
+<p>Rename(重新命名)<br>     启动「Rename Refactoring」对话框：重新命名所选的元素，并且（如果有启用的话）更正元素的（以及其它档案中的）所有参照。适用于方法、字段、区域变量、方法参数、类型、编译单元、套件、来源数据夹、项目，并且适用于可解析成这些元素类型之一的文字选项。 </p>
+<p>Move(移动)<br>     启动「Move」重构对话框：移动所选的元素，并（如果有启用的话）更正元素的（以及其它档案中的）所有参照。可套用至一或多个Static方法、Static字段、类型、编译单元、套件、来源数据夹与项目，并且套用于可解析成这些元素类型之一的文字选择项。 </p>
+<p>Change Method Signature(变更方法签章)<br>     启动「Change Method Signature」重构对话框。变更参数名称、参数类型、参数顺序，并更新对应方法的所有参照。此外，可以移除或新增参数，也可以变更方法传回类型及其可见性。这个重构作业可套用至方法或套用在解析成方法的文字选项。 </p>
+<p>Convert Anonymous Class to Nested(将匿名类别转换成巢状)<br>     启动「Convert Anonymous Class to Nested」重构对话框。协助将匿名内部类别转换成成员类别。这个重构作业可套用至匿名内部类别。 </p>
+<p>Convert Nested Type to Top Level(将巢状类型转换成最上层)<br>     启动「Convert Nested Type to Top Level」重构对话框。为所选成员类型建立新的Java编译单元，同时依需要更新所有参照。对于非static成员类型，将新增一个字段，以容许存取先前含括的实例。这个重构作业可套用至成员类型或解析成成员类型的文字。 </p>
+<p>Push Down(下推)<br>     启动「Push Down」重构对话框。将类别中的一组方法和字段移至它的子类别。这个重构作业可套用至一个或多个以相同类型宣告的方法和字段，或套用在字段或方法内的文字选项。 </p>
+<p>Pull Up(上拉)<br>     启动「Pull Up」重构精灵。将字段或方法移至其宣告类别的Super类别，或（如果是方法）将方法宣告成Super类别中的abstract。这个重构作业可套用至一个或多个以相同类型宣告的方法、字段和成员类型，或套用在字段、方法或成员类型内的文字选项。 </p>
+<p>Extract Interface(撷取界面)<br>     启动「Extract Interface」重构对话框。以一组方法建立新的接口，并使所选类别实作接口，同时选择性将类别参照变更为新接口（在可能的情况下）。这个重构作业可套用至类型。 </p>
+<p>Use Supertype Where Possible(适当时使用Super类型)<br>     启动「Use Supertype Where Possible」重构对话框。在识别所有可能发生这个取代的位置后，将出现的类型换成其Super类型之一。这个重构作业可用在类型之上。 </p>
+<p>Inline(列入)<br>     启动「Inline」重构对话框。列入区域变量、方法或常数。这个重构作业可用在方法、static final字段，以及解析为方法、static final字段或区域变量的文字选项。 </p>
+<p>Extract Method(撷取方法)<br>     启动「Extract Method」重构对话框。会建立一个内含目前所选之陈述式或表示式的新方法，并将选择项换成新方法的参照。可以使用编辑菜单中的展开选项至，以取得有效的选项范围。<br>这项特性非常适合用来清除冗长、杂乱和太复杂的方法。 </p>
+<p>Extract Local Variable(撷取区域变量)<br>     启动「Extract Local Variable」重构对话框。会建立一个新变量，以指定给目前所选的表示式，并将选择项换成新变量的参照。这个重构作业可用在解析为区域变量的文字选项。可以使用编辑菜单中的展开选项至，以取得有效的选项范围。 </p>
+<p>Extract Constant(撷取常数)<br>     启动「Extract Constant」重构对话框。从所选表示式中建立static final字段并替代字段参照，以及选择性地重新写入其它出现相同表示式的位置。这个重构作业可用在static final字段，以及解析为static final字段的文字选项。 </p>
+<p>Convert Local Variable to Field(将区域变量转换成字段)<br>     启动「Convert Local Variable to Field」重构对话框。将区域变量转换成字段。如果在建立时已起始设定变量，则作业会将起始设定移至新字段的宣告，或移至类别的建构子。这个重构作业可用在解析为区域变量的文字选项。 </p>
+<p>Encapsulate Field(封装字段)<br>     启动「Encapsulate Field」重构对话框。会将字段的所有参照换成getting与setting方法。适用于所选的字段或可解析成字段的文字选择项。 </p>
+<p>「Navigate」菜单<br>这个菜单可以寻找及导览工作台中显示的资源及其它成品。</p>
+<p>名称<br>     功能 </p>
+<p>Go Into(进入)<br>     将视图输入设定在目前所选的元素上。「套件浏览器」视图可支持这项。 </p>
+<p>Go To(移至)<br>     n         上一页：将视图输入设定在历程中的上一个输入上：必须有历程，才能用到这项（已使用「Go Into」） </p>
+<p>n         下一页：将视图输入设定在历程中的下一个输入上：必须有历程，才能用到这项（已使用「Go Into」、「Go Into」→「Back」）<br>n         往上移一层：将现行视图的输入设定在其输入的母元素上。<br>n         参照测试：浏览以找出所有参照目前选取之类型的JUnit测试<br>n         类型：浏览以找出类型，并在现行视图中显示它。「Package Explorer」视图支援这项。<br>n         套件：浏览以找出套件，并在现行视图中显示它。「Package Explorer」视图支援这项。<br>n         资源：浏览以找出资源，并在现行视图中显示它。<br>Open(开启)<br>     试着解析现行程序代码选项上所参照的元素，并开启宣告该参照的档案。 </p>
+<p>Open Type Hierarchy(开启类型阶层)<br>     试着解析现行程序代码选项上所参照的元素，并在「Type Hierarchy」视图中开启该元素。针对元素呼叫，并开启元素的类型阶层。显示Java元素的Java编辑器与视图中可支持这项。 </p>
+<p>Open Call Hierarchy(开启呼叫阶层)<br>     试着开启呼叫现行程序代码选项上所参照的元素，并在「Call Hierarchy」视图中开启该元素。 </p>
+<p>Open Super Implementation(开启super实作)<br>     开启一个编辑器，以显示目前所选方法或现行光标位置旁之方法的super实作。如果未选取方法，或者方法没有super实作，则不会开启编辑器。 </p>
+<p>Open External Javadoc(开启外部Javadoc)<br>     开启目前所选元素或文字选项的Javadoc文件。JAR或项目的Javadoc位置是在项目或JAR的「Javadoc Location」内容页面中指定。请注意，这个外部Javadoc文件可能未以现行程序代码中指定的Javadoc加以更新。可以使用Javadoc汇出精灵，在Java项目中为程序文件建立Javadoc文件。 </p>
+<p>Open Type(开启类型)<br>     显示「Open Type」选择对话框，以便在编辑器中开启一个类型。「开启类型」选择对话框中显示工作区中的所有现有类型。 </p>
+<p>Open Type In Hierarchy(在「阶层」中开启类型)<br>     显示「Open Type」选择对话框，以便在编辑器与「Type Hierarchy」视图中开启一个类型。「Open Type」选择对话框中显示工作区中的所有现有类型。 </p>
+<p>Show in → Package Explorer(显示在→套件浏览器)<br>     在「Package Explorer」视图中显示目前所选的元素（或现行光标位置旁的元素）。 </p>
+<p>Quick Outline(显示概要)<br>     为目前选取的类型开启小型概要器。 </p>
+<p>Quick Type Hierarchy(显示类型阶层)<br>     为目前选取的类型开启小型类型阶层器。 </p>
+<p>Next Annotation (移至下一个问题)<br>     选取下一个问题。Java编辑器中支持这项。 </p>
+<p>Previous Annotation (移至上一个问题)<br>     选取上一个问题。Java编辑器中支持这项。 </p>
+<p>Go to Last Edit Location(移至前次编辑位置)<br>     显示前次发生编辑的位置。 </p>
+<p>Go to Line(移至指定行号)<br>     开启对话框，以输入指示编辑器应移至的行号。限编辑器。 </p>
+<p>Back(向后)<br>     这个指令会导览至之前在编辑器中检视的前一个资源。这个指令和Web浏览器的上一页按钮相同。 </p>
+<p>Forward(向前<br>     这个指令会导览并复原之前的上一页指令所造成的效果。这个指令和Web浏览器的下一页按钮相同。 </p>
+<p>「Search」菜单</p>
+<p>名称<br>     功能 </p>
+<p>Search…(搜寻…)<br>     开启搜寻对话框 </p>
+<p>File…(档案…)<br>     针对「档案搜寻」页面开启搜寻对话框 </p>
+<p>Java…(Java…)<br>     针对「Java搜寻」页面开启搜寻对话框 </p>
+<p>References(参照)<br>     寻找所选Java元素的所有参照 </p>
+<p>Declarations(宣告)<br>     寻找所选Java元素的所有宣告 </p>
+<p>Implementors(实作者)<br>     寻找所选接口的所有实作者。 </p>
+<p>Read Access(读取权)<br>     寻找所选字段的所有读取权 </p>
+<p>Write Access(写入权)<br>     寻找所选字段的所有写入权 </p>
+<p>Referring Tests…()<br>     寻找所选Java元素的所有测试参照 </p>
+<p>Occurrences in File(档案中的搜寻结果)<br>     寻找所选Java元素在其档案中的所有出现项目 </p>
+<p>Exception Occurrences(抛出例外中的搜寻结果)<br>     寻找所选Java元素在其抛出例外中的所有出现项目 </p>
+<p>Search Scopes Submenu(搜寻范围子菜单)：</p>
+<p>范围<br>     可用性<br>     说明 </p>
+<p>Workspace(工作区)<br>     所有元素<br>     在整个工作区中搜寻 </p>
+<p>Project(专案)<br>     所有元素<br>     在含括所选元素的项目中进行搜寻 </p>
+<p>Hierarchy(阶层)<br>     类型和成员<br>     在类型的阶层中搜寻 </p>
+<p>Workings Set(工作集)<br>     所有元素<br>     在工作集中搜寻 </p>
+<p>工作集对话框可以储存并命名范围。「搜寻范围」子菜单中亦会显示工作集的现有实例。<br>可在下列视图中透过所选资源与元素的快速菜单，来执行Java搜寻：<br>n         「Package Explorer」<br>n         「Outline」视图<br>n         「Search Result」视图<br>n         「Hierarchy」视图<br>n         「Browsing」视图<br>Java编辑器中亦提供「Search」快速菜单。目前所选文字必须可解析成Java元素，才能执行搜寻。<br>所选Java元素的类型会定义所能使用的「Search」快速菜单。Java编辑器不会根据选项而限制可用的Java搜寻项清单。</p>
+<p>「Project」菜单<br>「项目」菜单可以对工作台中的项目执行动作（建置或编译）。</p>
+<p>名称<br>     功能 </p>
+<p>Open Project(开启专案)<br>     显示对话框，可以选取开启已关闭的项目 </p>
+<p>Close Project(关闭专案)<br>     关闭目前所选取的项目 </p>
+<p>Build All(全部建置)<br>     这个指令会对工作台中的所有项目执行增量(incremental)建置。也就是说，它会建置（编译）自从前次增量建置后，工作台中受到任何资源变更所影响的所有资源。自动建置关闭时，才可使用这个指令。 </p>
+<p>Build Project(建置专案)<br>     这个指令会对目前选取的项目执行增量(incremental)建置。也就是说，它会建置（编译）自从前次建置后，受到任何资源变更所影响的项目中的所有资源。自动建置关闭时，才可使用这个指令。 </p>
+<p>Build Workings Set(重新建置工作集)<br>     这个菜单可以在工作集上执行增量(incremental)建置。也就是说，它会建置（编译）前次建置之后，受到任何资源变更所影响之工作集中的所有资源。自动建置关闭时，才可使用这个指令。 </p>
+<p>Clean(清除)<br>     这个指令会舍弃先前的所有建置结果。如果自动建置是开启的，这会呼叫完整的建置。 </p>
+<p>Build Automatically(自动建置)<br>     自动建置工作区中的所有项目。这个指令可以切换自动建置喜好设定。 </p>
+<p>Generate Javadoc…(产生Javadoc…)<br>     对目前选取的项目开启「Generate Javadoc」精灵。 </p>
+<p>Properties(内容)<br>     对目前选取的项目开启内容页面。 </p>
+<p>「Run」菜单</p>
+<p>名称<br>     功能 </p>
+<p>Toggle Line Breakpoint(切换行岔断点)<br>     这个指令可以在目前于作用中Java编辑器中所选之行处，新增或移除Java行岔断点。 </p>
+<p>Toggle Method Breakpoint(切换方法岔断点)<br>     这个指令可以针对目前的二进制方法，新增或移除方法岔断点。可在Java类别档编辑器的来源中选取二进制方法，或在其它任何视图中选取（像是「Outline」视图）。 </p>
+<p>Toggle Watchpoint(切换监视点)<br>     这个指令可以针对目前的Java字段，新增或移除字段监视点。可在Java编辑器的来源中选取字段，或在其它任何视图中选取（像是「Outline」视图）。 </p>
+<p>Skip All Breakpoints(忽略所有的岔断点)<br>     这个指令可以忽略所有的岔断点 </p>
+<p>Add Java Exception Breakpoint(新增Java异常状况岔断点)<br>     这个指令可以建立一个异常状况岔断点。可藉由指定异常状况岔断点，而在掷出异常状况时，暂停执行绪或VM的执行。可设为在未捕捉到或捕捉到（或两者）异常状况时暂停执行。 </p>
+<p>Add Class Load Breakpoint<br>     这个指令可让以建立一个Class Load岔断点。 </p>
+<p>Run Last Launched(执行前一次的启动作业)<br>     这个指令可以在执行模式下迅速重复最近一次的启动作业（如果有支持该模式的话）。 </p>
+<p>Debug Last Launched(除错前一次的启动作业)<br>     这个指令可以在除错模式下迅速重复最近一次的启动作业（如果有支持该模式的话）。 </p>
+<p>Run History(执行历程)<br>     呈现在执行模式下启动的启动配置之最近历程的子菜单 </p>
+<p>Run As(执行为)<br>     呈现所登录之执行启动快捷方式的子菜单。启动快捷方式可支持工作台或作用中编辑器选项的感应式启动。 </p>
+<p>Run…(执行…)<br>     这个指令会了解启动配置对话框，以管理执行模式下的启动配置。 </p>
+<p>Debug History(除错历程)<br>     呈现在除错模式下启动的启动配置之最近历程的子菜单 </p>
+<p>Debug As(除错为)<br>     呈现所登录之除错启动快捷方式的子菜单。启动快捷方式可支持工作台或作用中编辑器选项的感应式启动。 </p>
+<p>Debug…(除错…)<br>     这个指令会了解启动配置对话框，以管理除错模式下的启动配置。 </p>
+<p>Inspect(视察)<br>     当执行绪暂停时，这个指令会使用「表示式」视图，显示在该执行绪之堆栈框或变量的环境定义下，视察所选表示式或变量的结果。 </p>
+<p>Display(显示)<br>     当执行绪暂停时，这个指令会使用「Display」视图，显示在该执行绪之堆栈框或变量的环境定义下，评估所选表示式的结果。如果目前作用中的部分是「Java Snippet Editor(Java片段编辑器)」，则会在其中显示结果。 </p>
+<p>Execute(执行)<br>     执行 </p>
+<p>Step into Selection<br>     这些指令可以逐步执行所要除错的程序代码。 </p>
+<p>Externakl Tools(外部工具)<br>     外部工具 </p>
+<p>「Windows」菜单<br>这个菜单可以显示、隐藏，以及另行在工作台中操作各种视图、视景和动作。</p>
+<p>名称<br>     功能 </p>
+<p>New Window(开新窗口)<br>     这个指令会开启一个新的工作台窗口，其中含有与现行视景相同的视景。 </p>
+<p>Open Perspective(开启视景)<br>     这个指令会在此工作台窗口中开启新视景。可以在「Window」→「Preferences」→「Workbench」→「Perspectives」页面中变更这个喜好设定。在工作台窗口内开启的所有视景都会显示在快捷方式列上。 </p>
+<p>Show View(显示视图)<br>     这个指令会在现行视景中显示选取的视图。可以在「Window」→「Preferences」→「Workbench」→「Perspectives」页面中配置开启视图的方式。可能会想开启的视图会最先列示；这份清单视现行视景而定。从其它… 子菜单中，可以开启任何视图。视图会依照「Show View」对话框中的各个种类来排序。 </p>
+<p>Customize Perspective(自订视景)<br>     每个视景包含一组预先定义的动作，可以从菜单列和工作台工具列存取这些动作。  </p>
+<p>Save Perspective As(另存新视景)<br>     这个指令可以储存现行视景，以及建立自己的自订视景。储存视景之后，可以使用「Window」→「Show View」→「Other…」菜单项目来开启更多这类型的视景。 </p>
+<p>Reset Perspective(重设视景)<br>     这个指令会将现行视景的布置变更为其原始的配置。 </p>
+<p>Close Perspective(关闭视景)<br>     这个指令会关闭作用中的视景。 </p>
+<p>Close All Perspectives(关闭所有视景)<br>     这个指令会关闭工作台窗口中的所有已开启视景。 </p>
+<p>Navigation(导览)<br>     这个子菜单包含用于在工作台窗口中的视图、视景及编辑器之间导览的按键。 </p>
+<p>n         显示系统菜单：显示用来重新调整大小、关闭或固定现行视图或编辑器的菜单。<br>n         显示视图菜单：显示可在作用中视图的工具列中存取的下拉菜单。<br>n         将作用中的视图或编辑器最大化：使作用中的部分占用整个画面，如果已占用整个画面，就使它返回原始状态。<br>n         启动编辑器：使现行编辑器作用中。<br>n         下一个编辑器：启动最近使用的编辑器清单中的下一个开启的编辑器。<br>n         上一个编辑器：启动最近使用的编辑器清单中的上一个开启的编辑器。<br>n         切换至编辑器：显示一个对话框，用来切换到已开启的编辑器。显示一个对话框，用来切换到已开启的编辑器。<br>n         下一个视图：启动最近使用的视图清单中的下一个开启的视图。<br>n         上一个视图：启动最近使用的编辑器清单中的上一个开启的编辑器。<br>n         下一个视景：启动最近使用的视景清单中的下一个开启的视景。<br>n         上一个视景：启动最近使用的视景清单中的上一个开启的视景。<br>Preferences(喜好设定)<br>     这个指令可以指出在使用工作台时的喜好设定。其中有各式各样的喜好设定可用来配置工作台及其视图的外观，以及用来自订在工作台中安装的所有工具的行为。 </p>
+<p>「Help」菜单<br>这个指令提供有关使用工作台的说明。</p>
+<p>下面是一些快捷键的用法：<br>下面是一些快捷键的用法：<br>名称<br>     功能 </p>
+<p>Welcome(欢迎使用)<br>     这个指令会开启欢迎使用内容。 </p>
+<p>Help Contents(说明内容)<br>     这个指令显示说明视图。说明视图含有说明书籍、主题，以及与工作台和已安装特性的相关信息。 </p>
+<p>Tips and Tricks(要诀和技巧)<br>     这个指令会开启可能尚未探索之有兴趣的生产力特性的清单。 </p>
+<p>Cheat Sheets(提要)<br>     这个指令会开启选取提要的对话框。 </p>
+<p>Software Updates(软件更新)<br>     这个指令群组可以更新产品以及下载及安装新特性。 </p>
+<p>About Eclipse Platform(关于Eclipse平台)<br>     这个指令显示产品、已安装特性及可用外挂程序的相关信息。 </p>
+<h2 id="二、eclipse中最常用的快捷键"><a href="#二、eclipse中最常用的快捷键" class="headerlink" title="二、eclipse中最常用的快捷键"></a>二、eclipse中最常用的快捷键</h2><p>一、常用系列：<br> <img src="https://img-blog.csdnimg.cn/20181208171709586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>二、查看和定位快捷键系列<br>在程序中，迅速定位代码的位置，快速找到 Bug 的所在，是非常不容易的事，Eclipse 提供了强大的查找功能，可以利用如下的快捷键帮助完成查找定位的工作。</p>
+<p> <img src="https://img-blog.csdnimg.cn/20181208171722276.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2018120817175556.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>三、调试快捷键系列<br> <img src="https://img-blog.csdnimg.cn/20181208171814403.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>四、常用编辑器快捷键系列<br>通常文本编辑器都提供了一些和编辑相关的快捷键，在 Eclipse 中也可以通过这些快捷键进行文本编辑。<br> <img src="https://img-blog.csdnimg.cn/20181208171828783.png" alt="在这里插入图片描述"><br>五、切换系列<br><img src="https://img-blog.csdnimg.cn/20181208171835278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>六、Ctrl系列<br> <img src="https://img-blog.csdnimg.cn/20181208171843980.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>七、Ctrl+Shift系列<br> <img src="https://img-blog.csdnimg.cn/20181208171850337.png" alt="在这里插入图片描述"><br>八、F 快捷键系列<br> <img src="https://img-blog.csdnimg.cn/20181208171858713.png" alt="在这里插入图片描述"><br>九、行编辑用系列<br> <img src="https://img-blog.csdnimg.cn/20181208171903262.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>十、不常用系列<br><img src="https://img-blog.csdnimg.cn/20181208171910875.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr>
+<h1 id="本文章已同步至我的GitHub仓库：Javastudy-期待您的加入-blush"><a href="#本文章已同步至我的GitHub仓库：Javastudy-期待您的加入-blush" class="headerlink" title="本文章已同步至我的GitHub仓库：Javastudy,期待您的加入:blush:"></a>本文章已同步至我的GitHub仓库：<a href="https://github.com/freestylefly/javaStudy" target="_blank" rel="noopener">Javastudy</a>,期待您的加入:blush:</h1><p><img src="http://pp8g2fyug.bkt.clouddn.com/github.jpg" width=""></p>
+<h1 id="本文章已同步至苍何的个人博客-可以直接在博客上留言哦-blush"><a href="#本文章已同步至苍何的个人博客-可以直接在博客上留言哦-blush" class="headerlink" title="本文章已同步至苍何的个人博客,可以直接在博客上留言哦:blush:"></a>本文章已同步至<a href="https://freestylefly.github.io/">苍何的个人博客</a>,可以直接在博客上留言哦:blush:</h1><p><img src="http://pp8g2fyug.bkt.clouddn.com/myblog..png" width=""></p>
+<h1 id="来我的微信公众号玩耍呗-blush"><a href="#来我的微信公众号玩耍呗-blush" class="headerlink" title="来我的微信公众号玩耍呗:blush:"></a>来我的微信公众号玩耍呗:blush:</h1><p><img src="http://pp8g2fyug.bkt.clouddn.com/weixingongzhonghao.jpg" width=""></p>
+<h1 id="扫码无套路关注我的CSDN博客-blush"><a href="#扫码无套路关注我的CSDN博客-blush" class="headerlink" title="扫码无套路关注我的CSDN博客:blush:"></a>扫码无套路关注我的<a href="https://blog.csdn.net/qq_43270074?orderby=UpdateTime" target="_blank" rel="noopener">CSDN</a>博客:blush:</h1><p><img src="http://pp8g2fyug.bkt.clouddn.com/CSDN.png" width=""></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="苍 何 wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+	
+	
+   
+		<div>
+			<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+		</div>
+   
+	
+	
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="苍 何 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="苍 何 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>苍 何</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://freestylefly.github.io/2019/04/13/eclipse详解及eclipse快捷键/" title="eclipse 详解及eclipse快捷键">http://freestylefly.github.io/2019/04/13/eclipse详解及eclipse快捷键/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/eclipse/" rel="tag"><i class="fa fa-tag"></i> eclipse</a>
+          
+            <a href="/tags/快捷键/" rel="tag"><i class="fa fa-tag"></i> 快捷键</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/13/Ajax常用用法/" rel="next" title="Ajax 常用用法">
+                <i class="fa fa-chevron-left"></i> Ajax 常用用法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/13/JavaScript基础知识/" rel="prev" title="JavaScript 基础知识">
+                JavaScript 基础知识 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDk5My8yMTUxMw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="苍 何">
+            
+              <p class="site-author-name" itemprop="name">苍 何</p>
+              <p class="site-description motion-element" itemprop="description">你若晴天，我便安好。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">63</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">66</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/freestylefly" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://blog.csdn.net/qq_43270074" target="_blank" title="CSDN"><i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3866366671/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="微博"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/yun-fan-80-64/activities" target="_blank" title="知乎"><i class="fa fa-fw fa-twitter"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/enfangzhong" target="_blank" title="公众号"><i class="fa fa-fw fa-facebook"></i>公众号</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="2689458656@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lruihao.cn/" title="博采众长" target="_blank">博采众长</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.leridy.pw/" title="乐余地" target="_blank">乐余地</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://tmy123.com/" title="同盟源" target="_blank">同盟源</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          <marquee>
+	<a href="/links.html">
+	<font size="4" face="STXingkai">
+		<font color="#FF0000">欢</font>
+		<font color="#E80017">迎</font>
+		<font color="#D1002E">点</font>
+		<font color="#BA0045">我</font>
+		<font color="#A3005C">互</font>
+		<font color="#A00073">换</font>
+		<font color="#A0008A">友</font>
+		<font color="#A000A1">链</font>
+		<font color="#A000B8">哦</font>
+		<font color="#A000CF">~</font>
+		<font color="#A000E6">~</font>
+	</font>
+	</a>
+</marquee>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、eclipse详解"><span class="nav-number">1.</span> <span class="nav-text">一、eclipse详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、eclipse中最常用的快捷键"><span class="nav-number">2.</span> <span class="nav-text">二、eclipse中最常用的快捷键</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#本文章已同步至我的GitHub仓库：Javastudy-期待您的加入-blush"><span class="nav-number"></span> <span class="nav-text">本文章已同步至我的GitHub仓库：Javastudy,期待您的加入:blush:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文章已同步至苍何的个人博客-可以直接在博客上留言哦-blush"><span class="nav-number"></span> <span class="nav-text">本文章已同步至苍何的个人博客,可以直接在博客上留言哦:blush:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#来我的微信公众号玩耍呗-blush"><span class="nav-number"></span> <span class="nav-text">来我的微信公众号玩耍呗:blush:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扫码无套路关注我的CSDN博客-blush"><span class="nav-number"></span> <span class="nav-text">扫码无套路关注我的CSDN博客:blush:</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+
+      
+
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DBUtils/">DBUtils</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eclipse/">Eclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emulator/">Emulator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/">JDBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jestem/">Jestem</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/">MySql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/">Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/">TCP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/">VSCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bean/">bean</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c3p0/">c3p0</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/idea/">idea</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/internit/">internit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multithreading/">multithreading</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webstorm/">webstorm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xml/">xml</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题/">主题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/习惯/">习惯</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱码/">乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/云服务器/">云服务器</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优点/">优点</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/反射/">反射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信/">微信</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拦截器/">拦截器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/改进/">改进</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器人/">机器人</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/标签库/">标签库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/流/">流</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缺点/">缺点</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/聊天/">聊天</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自我/">自我</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟机/">虚拟机</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语音/">语音</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/请求头/">请求头</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/资料/">资料</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高效能/">高效能</a><span class="tag-list-count">1</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
+
+
+
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">苍 何</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://github.com/freestylefly">GitHub</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<!--
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+-->
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://github.com/freestylefly">CangHe</a> v6.3.0</div>
+
+
+
+
+
+<font color="MediumPurple" face="STLiti">
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共135.9k字|</span>
+</div>
+</font>
+
+<font color="MediumPurple" face="STLiti"><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span></font>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("06/28/2019 22:00:00");//此处为建站时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "已苟活："+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      访问用户：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

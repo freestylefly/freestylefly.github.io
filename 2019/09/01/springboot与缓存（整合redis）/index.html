@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+
+  <script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/favicon-32x32-next.png?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "d42664d6"
+    });
+  daovoice('update');
+  </script>
+
+  <meta name="description" content="springboot与缓存（整合redis） 一、什么是缓存 缓存就是数据交换的缓冲区（称作：Cache），他把一些外存上的数据保存在内存上，为什么保存在内存上，我们运行的所有程序里面的变量都是存放在内存中的，所以如果想将值放入内存上，可以通过变量的方式存储。在JAVA中一些缓存一般都是通过Map集合来实现的。 缓存在不同的场景下，作用是不一样的具体举例说明：         ✔  操作系统磁盘缓">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springboot与缓存（整合redis）">
+<meta property="og:url" content="http://freestylefly.github.io/2019/09/01/springboot与缓存（整合redis）/index.html">
+<meta property="og:site_name" content="苍 何">
+<meta property="og:description" content="springboot与缓存（整合redis） 一、什么是缓存 缓存就是数据交换的缓冲区（称作：Cache），他把一些外存上的数据保存在内存上，为什么保存在内存上，我们运行的所有程序里面的变量都是存放在内存中的，所以如果想将值放入内存上，可以通过变量的方式存储。在JAVA中一些缓存一般都是通过Map集合来实现的。 缓存在不同的场景下，作用是不一样的具体举例说明：         ✔  操作系统磁盘缓">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190901142054527.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190901142141703.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190901142201180.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190901134040609.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190901134155752.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190901134427411.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190901134518842.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190901134608819.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-12-21T17:28:06.506Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="springboot与缓存（整合redis）">
+<meta name="twitter:description" content="springboot与缓存（整合redis） 一、什么是缓存 缓存就是数据交换的缓冲区（称作：Cache），他把一些外存上的数据保存在内存上，为什么保存在内存上，我们运行的所有程序里面的变量都是存放在内存中的，所以如果想将值放入内存上，可以通过变量的方式存储。在JAVA中一些缓存一般都是通过Map集合来实现的。 缓存在不同的场景下，作用是不一样的具体举例说明：         ✔  操作系统磁盘缓">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190901142054527.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="苍 何" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://freestylefly.github.io/2019/09/01/springboot与缓存（整合redis）/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>springboot与缓存（整合redis） | 苍 何</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <link rel="stylesheet" href="/dist/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script>
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/freestylefly"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><script>
+ function GetRandomNum(Min,Max)
+  {
+    var Range = Max - Min;
+    var Rand = Math.random();
+    return(Min + Math.round(Rand * Range));
+  }
+function setSidebarMarginTop (headerOffset) {
+    return $('#sidebar').css({ 'margin-top': headerOffset });
+  }
+ function getHeaderOffset () {
+    return $('.header-inner').height() + CONFIG.sidebar.offset;
+  }
+  window.onload=function(){
+    var subtitle = "我翻山越岭，终寻一人等候。W和梦想平等交易，和喧嚣保持距离。W希望你好，希望你顺利，即使小有坎坷，偶遇困顿也能化险为夷。W成熟是给你陌生人看的，逗比是给朋友看的，幼稚是给喜欢的人看的。W不要说了，我不会屈服。W刚刚又没忍住，往宇宙里发送了想你的脑电波。";
+     var mytitle = subtitle.split("W");
+     var max = mytitle.length-1;
+     var index = GetRandomNum(0,max);
+     var text = mytitle[index];
+     $("#helloTitle").html(text);
+     var headOffset = getHeaderOffset();
+     setSidebarMarginTop(headOffset);
+     //动态subtitle设置
+  }
+</script>
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">苍 何</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  
+    <p style="color:#black;font-size:18px;font-family:STXingkai" id="helloTitle" class="site-subtitle"></p>
+  
+
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-love">
+    <a href="/love/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>love</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-loveshow">
+    <a href="/loveshow/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>loveshow</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-lovephoto">
+    <a href="/lovePhoto/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>lovePhoto</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-showlove">
+    <a href="/showLove/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>showLove</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+    <a href="/404/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>公益 404</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://freestylefly.github.io/2019/09/01/springboot与缓存（整合redis）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="苍 何">
+      <meta itemprop="description" content="你若晴天，我便安好。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="苍 何">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">springboot与缓存（整合redis）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-01 14:45:59" itemprop="dateCreated datePublished" datetime="2019-09-01T14:45:59+08:00">2019-09-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-22 01:28:06" itemprop="dateModified" datetime="2019-12-22T01:28:06+08:00">2019-12-22</time>
+              
+            
+          </span>
+
+
+          
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JavaEE框架/" itemprop="url" rel="index"><span itemprop="name">JavaEE框架</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+            <span class="post-meta-divider">|</span>
+<span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>文章字数： 2,191</span>
+
+<span class="post-meta-divider">|</span>
+<span title="post.min2read"><span class="post-meta-item-icon"><i class="fa fa-clock-o"></i></span>阅读时长： 9分钟</span>
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>springboot与缓存（整合redis）</p>
+<h1 id="一、什么是缓存"><a href="#一、什么是缓存" class="headerlink" title="一、什么是缓存"></a>一、什么是缓存</h1><p> 缓存就是数据交换的缓冲区（称作：Cache），他把一些外存上的数据保存在内存上，为什么保存在内存上，我们运行的所有程序里面的变量都是存放在内存中的，所以如果想将值放入内存上，可以通过变量的方式存储。在JAVA中一些缓存一般都是通过Map集合来实现的。</p>
+<p>缓存在不同的场景下，作用是不一样的具体举例说明：<br>         ✔  操作系统磁盘缓存 ——&gt; 减少磁盘机械操作。<br>         ✔  数据库缓存——&gt;减少文件系统IO。<br>         ✔  应用程序缓存——&gt;减少对数据库的查询。<br>         ✔  Web服务器缓存——&gt;减少应用服务器请求。<br>         ✔  客户端浏览器缓存——&gt;减少对网站的访问。</p>
+<p>具体关于缓存的详细介绍以及缓存的面试问题可以参考这篇博客</p>
+<p><a href="https://blog.csdn.net/zhengzhaoyang122/article/details/82184029" target="_blank" rel="noopener">https://blog.csdn.net/zhengzhaoyang122/article/details/82184029</a></p>
+<h1 id="二、Spring缓存抽象"><a href="#二、Spring缓存抽象" class="headerlink" title="二、Spring缓存抽象"></a>二、Spring缓存抽象</h1><p>Spring从3.1开始定义了org.springframework.cache.Cache<br>和org.springframework.cache.CacheManager接口来统一不同的缓存技术；并支持使用JCache（JSR-107）注解简化我们开发；</p>
+<p>每次调用需要缓存功能的方法时，Spring会检查检查指定参数的指定的目标方法是否已经被调用过；如果有就直接从缓存中获取方法调用后的结果，如果没有就调用方法并缓存结果后返回给用户。下次调用直接从缓存中获取。</p>
+<p>使用Spring缓存抽象时我们需要关注以下两点；</p>
+<p>1、确定方法需要被缓存以及他们的缓存策略</p>
+<p>2、从缓存中读取之前缓存存储的数据</p>
+<p><img src="https://img-blog.csdnimg.cn/20190901142054527.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="三、几个重要概念-amp-缓存注解"><a href="#三、几个重要概念-amp-缓存注解" class="headerlink" title="三、几个重要概念&amp;缓存注解"></a>三、几个重要概念&amp;缓存注解</h1><h2 id="1、Cache："><a href="#1、Cache：" class="headerlink" title="1、Cache："></a>1、Cache：</h2><p>缓存接口，定义缓存操作。实现有：RedisCache、EhCacheCache、ConcurrentMapCache等</p>
+<h2 id="2、CacheManager"><a href="#2、CacheManager" class="headerlink" title="2、CacheManager"></a>2、CacheManager</h2><p>缓存管理器，管理各种缓存（Cache）组件</p>
+<h2 id="3、-Cacheable"><a href="#3、-Cacheable" class="headerlink" title="3、@Cacheable"></a>3、@Cacheable</h2><p>主要针对方法配置，能够根据方法的请求参数对其结果进行缓存</p>
+<p>（后面会细说该注解）</p>
+<h2 id="4、-CacheEvict"><a href="#4、-CacheEvict" class="headerlink" title="4、@CacheEvict"></a>4、@CacheEvict</h2><p>清空缓存</p>
+<h2 id="5、-CachePut"><a href="#5、-CachePut" class="headerlink" title="5、@CachePut"></a>5、@CachePut</h2><p>保证方法被调用，又希望结果被缓存。</p>
+<h2 id="6、-EnableCaching"><a href="#6、-EnableCaching" class="headerlink" title="6、@EnableCaching"></a>6、@EnableCaching</h2><p>开启基于注解的缓存</p>
+<h2 id="7、keyGenerator"><a href="#7、keyGenerator" class="headerlink" title="7、keyGenerator"></a>7、keyGenerator</h2><p>缓存数据时key生成策略</p>
+<h2 id="8、serialize"><a href="#8、serialize" class="headerlink" title="8、serialize"></a>8、serialize</h2><p>缓存数据时value序列化策略</p>
+<h2 id="9、-Cacheable-CachePut-CacheEvict-主要的参数"><a href="#9、-Cacheable-CachePut-CacheEvict-主要的参数" class="headerlink" title="9、@Cacheable/@CachePut/@CacheEvict 主要的参数"></a>9、@Cacheable/@CachePut/@CacheEvict 主要的参数</h2><p><img src="https://img-blog.csdnimg.cn/20190901142141703.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190901142201180.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="四、springboot整合redis实现缓存"><a href="#四、springboot整合redis实现缓存" class="headerlink" title="四、springboot整合redis实现缓存"></a>四、springboot整合redis实现缓存</h1><h2 id="1、引入依赖"><a href="#1、引入依赖" class="headerlink" title="1、引入依赖"></a>1、引入依赖</h2><p>在pom.xml中引入spring-boot-starter-data-redis依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="2、配置redis连接地址"><a href="#2、配置redis连接地址" class="headerlink" title="2、配置redis连接地址"></a>2、配置redis连接地址</h2><p>在application.yml或者application.properties中配置redis连接地址</p>
+<p>这里还需要配置一下数据库的地址，方便测试使用</p>
+<p>application.properties配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">spring.datasource.url=jdbc:mysql://MySQL的主机地址:3306/数据库名</span><br><span class="line">spring.datasource.username=root</span><br><span class="line">spring.datasource.password=密码</span><br><span class="line">spring.datasource.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line"></span><br><span class="line"># 启用mybatis的命名策略（即驼峰命名法）</span><br><span class="line">mybatis.configuration.map-underscore-to-camel-case=true</span><br><span class="line"></span><br><span class="line">logging.level.com.atguigu.cache.mapper=debug</span><br><span class="line"></span><br><span class="line">debug=true</span><br><span class="line"></span><br><span class="line">spring.redis.host=redis主机地址</span><br></pre></td></tr></table></figure>
+<p>application.yml配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="number">123456</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://MySQL的主机地址:3306/数据库名</span></span><br><span class="line"><span class="attr">    driver-class-name:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="attr">    type:</span> <span class="string">com.alibaba.druid.pool.DruidDataSource</span> <span class="comment">#配置Druid数据源</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#   数据源其他配置</span></span><br><span class="line"><span class="attr">    initialSize:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">    minIdle:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">    maxActive:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">    maxWait:</span> <span class="number">60000</span></span><br><span class="line"><span class="attr">    timeBetweenEvictionRunsMillis:</span> <span class="number">60000</span></span><br><span class="line"><span class="attr">    minEvictableIdleTimeMillis:</span> <span class="number">300000</span></span><br><span class="line"><span class="attr">    validationQuery:</span> <span class="string">SELECT</span> <span class="number">1</span> <span class="string">FROM</span> <span class="string">DUAL</span></span><br><span class="line"><span class="attr">    testWhileIdle:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    testOnBorrow:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    testOnReturn:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    poolPreparedStatements:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment">#   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙</span></span><br><span class="line"><span class="attr">    filters:</span> <span class="string">stat,wall,log4j</span></span><br><span class="line"><span class="attr">    maxPoolPreparedStatementPerConnectionSize:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">    useGlobalDataSourceStat:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    connectionProperties:</span> <span class="string">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span></span><br><span class="line"><span class="attr">  redis:</span></span><br><span class="line"><span class="attr">    host:</span> <span class="string">redis主机地址</span></span><br><span class="line"><span class="comment">#mybatis:</span></span><br><span class="line"><span class="comment">#  config-location: classpath:mybatis/mybatis-config.xml</span></span><br><span class="line"><span class="comment"># 开启驼峰命名</span></span><br><span class="line"><span class="attr">mybatis:</span></span><br><span class="line"><span class="attr">  configuration:</span></span><br><span class="line"><span class="attr">    map-underscore-to-camel-case:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">logging:</span></span><br><span class="line"><span class="attr">  level:</span></span><br><span class="line">    <span class="string">com.canghe.springboot.mapper:</span> <span class="string">debug</span></span><br><span class="line"><span class="attr">debug:</span> <span class="literal">true</span></span><br><span class="line"><span class="comment">#  mapper-locations: classpath:mybatis/mapper/*.xml</span></span><br></pre></td></tr></table></figure>
+<h2 id="3、在虚拟机或者云服务器上安装redis"><a href="#3、在虚拟机或者云服务器上安装redis" class="headerlink" title="3、在虚拟机或者云服务器上安装redis"></a>3、在虚拟机或者云服务器上安装redis</h2><p>可以直接通过docker安装redis，并配置端口</p>
+<h2 id="4、使用RestTemplate操作redis"><a href="#4、使用RestTemplate操作redis" class="headerlink" title="4、使用RestTemplate操作redis"></a>4、使用RestTemplate操作redis</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">StringRedisTemplate stringRedisTemplate;<span class="comment">//操作k-v都是字符串</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">RedisTemplate redisTemplate;<span class="comment">//操作k-v对象的</span></span><br></pre></td></tr></table></figure>
+<p><strong>Redis常见的五大数据类型</strong></p>
+<p>String(字符串) 、list(列表)、set（集合）、hash（散列）、Zset（有序集合）</p>
+<ol>
+<li>redisTemplate.opsForValue();//操作字符串</li>
+<li>redisTemplate.opsForHash();//操作hash</li>
+<li>redisTemplate.opsForList();//操作list</li>
+<li>redisTemplate.opsForSet();//操作set</li>
+<li>redisTemplate.opsForZSet();//操作有序set</li>
+</ol>
+<p>测试代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="comment">//        stringRedisTemplate.opsForValue().append("key","helloword");</span></span><br><span class="line"><span class="comment">//        String msg = stringRedisTemplate.opsForValue().get("key");</span></span><br><span class="line"><span class="comment">//        System.out.println("msg:"+msg);</span></span><br><span class="line">        stringRedisTemplate.opsForList().leftPush(<span class="string">"firstList"</span>,<span class="string">"1"</span>);</span><br><span class="line">        stringRedisTemplate.opsForList().leftPush(<span class="string">"firstList"</span>,<span class="string">"2"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="五、-Cacheable注解"><a href="#五、-Cacheable注解" class="headerlink" title="五、@Cacheable注解"></a>五、@Cacheable注解</h1><h2 id="1、运行流程"><a href="#1、运行流程" class="headerlink" title="1、运行流程"></a>1、运行流程</h2><p>1、方法运行之前，先去查询Cache（缓存组件），按照cacheNames指定的名字获取；（CacheManager先获取相应的缓存），第一次获取缓存如果没有Cache组件会自动创建。<br>2、去Cache中查找缓存的内容，使用一个key，默认就是方法的参数； key是按照某种策略生成的；默认是使用keyGenerator生成的，默认使用SimpleKeyGenerator生成key； SimpleKeyGenerator生成key的默认策略；<br>             如果没有参数；key=new SimpleKey()；<br>             如果有一个参数：key=参数的值<br>             如果有多个参数：key=new SimpleKey(params)；</p>
+<p>3、没有查到缓存就调用目标方法； </p>
+<p>4、将目标方法返回的结果，放进缓存中</p>
+<p><strong>@</strong>Cacheable标注的方法执行之前先来检查缓存中有没有这个数据，默认按照参数的值作为key去查询缓存，<strong><br>   如果没有就运行方法并将结果放入缓存；以后再来调用就可以直接使用缓存中的数据；</strong></p>
+<h2 id="2、核心"><a href="#2、核心" class="headerlink" title="2、核心"></a>2、核心</h2><p> 1）、使用CacheManager【ConcurrentMapCacheManager】按照名字得到Cache【ConcurrentMapCache】组件<br>  2）、key使用keyGenerator生成的，默认是SimpleKeyGenerator</p>
+<h2 id="3、几个属性"><a href="#3、几个属性" class="headerlink" title="3、几个属性"></a>3、几个属性</h2><ul>
+<li><p>cacheNames/value：指定缓存组件的名字;将方法的返回结果放在哪个缓存中，是数组的方式，可以指定多个缓存；</p>
+</li>
+<li><p>key：缓存数据使用的key；可以用它来指定。默认是使用方法参数的值  1-方法的返回值， 编写SpEL； #i d;参数id的值   #a0  #p0  #root.args[0]    getEmp[2]</p>
+</li>
+<li><p>keyGenerator：key的生成器；可以自己指定key的生成器的组件id，key/keyGenerator：二选一使用;</p>
+</li>
+<li><p>cacheManager：指定缓存管理器；或者cacheResolver指定获取解析器</p>
+</li>
+<li><p>condition：指定符合条件的情况下才缓存； condition = “#a0&gt;1”：第一个参数的值》1的时候才进行缓存</p>
+</li>
+<li><p>unless:否定缓存；当unless指定的条件为true，方法的返回值就不会被缓存；可以获取到结果进行判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unless = &quot;#result == null&quot;</span><br><span class="line">     *              unless = &quot;#a0==2&quot;:如果第一个参数的值是2，结果不缓存；</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sync：是否使用异步模式</p>
+</li>
+</ul>
+<p>@Cacheable例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Cacheable</span>(value = &#123;<span class="string">"emp"</span>&#125;<span class="comment">/*,keyGenerator = "myKeyGenerator",condition = "#a0&gt;1",unless = "#a0==2"*/</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Employee <span class="title">getEmp</span><span class="params">(Integer id)</span></span>&#123;</span><br><span class="line">       System.out.println(<span class="string">"查询"</span>+id+<span class="string">"号员工"</span>);</span><br><span class="line">       Employee emp = employeeMapper.getEmpById(id);</span><br><span class="line">       <span class="keyword">return</span> emp;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="六、-CachePut"><a href="#六、-CachePut" class="headerlink" title="六、@CachePut"></a>六、@CachePut</h1><h2 id="1、启用场景"><a href="#1、启用场景" class="headerlink" title="1、启用场景"></a>1、启用场景</h2><p>既调用方法，又更新缓存数据；同步更新缓存，修改了数据库的某个数据，同时更新缓存；</p>
+<h2 id="2、运行时机"><a href="#2、运行时机" class="headerlink" title="2、运行时机"></a>2、运行时机</h2><ul>
+<li>先调用目标方法</li>
+<li>将目标方法的结果缓存起来</li>
+</ul>
+<h2 id="3、测试步骤"><a href="#3、测试步骤" class="headerlink" title="3、测试步骤"></a>3、测试步骤</h2><p> 1、查询1号员工；查到的结果会放在缓存中；<br>     key：1  value：lastName：张三<br>  2、以后查询还是之前的结果<br>  3、更新1号员工；【lastName:zhangsan；gender:0】<br>     将方法的返回值也放进缓存了；<br>     key：传入的employee对象  值：返回的employee对象；<br>  4、查询1号员工？<br>     应该是更新后的员工；<br>     key = “#employee.id”:使用传入的参数的员工id；<br>     key = “#result.id”：使用返回后的id<br>      @Cacheable的key是不能用#result<br>      为什么是没更新前的？【1号员工没有在缓存中更新】</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CachePut</span>(<span class="comment">/*value = "emp",*/</span>key = <span class="string">"#result.id"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Employee <span class="title">updateEmp</span><span class="params">(Employee employee)</span></span>&#123;</span><br><span class="line">       System.out.println(<span class="string">"updateEmp:"</span>+employee);</span><br><span class="line">       employeeMapper.updateEmp(employee);</span><br><span class="line">       <span class="keyword">return</span> employee;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="七、-CacheEvict"><a href="#七、-CacheEvict" class="headerlink" title="七、@CacheEvict"></a>七、@CacheEvict</h1><h2 id="缓存清除"><a href="#缓存清除" class="headerlink" title="缓存清除"></a>缓存清除</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@CacheEvict</span>：缓存清除</span></span><br><span class="line"><span class="comment"> *  key：指定要清除的数据</span></span><br><span class="line"><span class="comment"> *  allEntries = true：指定清除这个缓存中所有的数据</span></span><br><span class="line"><span class="comment"> *  beforeInvocation = false：缓存的清除是否在方法之前执行</span></span><br><span class="line"><span class="comment"> *      默认代表缓存清除操作是在方法执行之后执行;如果出现异常缓存就不会清除</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  beforeInvocation = true：</span></span><br><span class="line"><span class="comment"> *      代表清除缓存操作是在方法运行之前执行，无论方法是否出现异常，缓存都清除</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@CacheEvict</span>(value=<span class="string">"emp"</span>,beforeInvocation = <span class="keyword">true</span><span class="comment">/*key = "#id",*/</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteEmp</span><span class="params">(Integer id)</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"deleteEmp:"</span>+id);</span><br><span class="line">    <span class="comment">//employeeMapper.deleteEmpById(id);</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span>/<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="八、-Caching"><a href="#八、-Caching" class="headerlink" title="八、@Caching"></a>八、@Caching</h1><p>定义复杂的缓存规则</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Caching</span>(</span><br><span class="line">       cacheable = &#123;</span><br><span class="line">           <span class="meta">@Cacheable</span>(<span class="comment">/*value="emp",*/</span>key = <span class="string">"#lastName"</span>)</span><br><span class="line">       &#125;,</span><br><span class="line">       put = &#123;</span><br><span class="line">           <span class="meta">@CachePut</span>(<span class="comment">/*value="emp",*/</span>key = <span class="string">"#result.id"</span>),</span><br><span class="line">           <span class="meta">@CachePut</span>(<span class="comment">/*value="emp",*/</span>key = <span class="string">"#result.email"</span>)</span><br><span class="line">       &#125;</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+<p><hr></p>
+<p></p><h2 align="center">The more effort，the more lucky</h2><br><a href="https://github.com/freestylefly/javaStudy" target="_blank" rel="noopener"><p></p><h3 align="center">GitHub项目</h3><p></p></a><p></p>
+<p align="center">https://github.com/freestylefly/javaStudy</p>
+<p align="center">
+<img src="https://img-blog.csdnimg.cn/20190901134040609.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" width="">
+</p>
+<p align="center">
+<img src="https://img-blog.csdnimg.cn/20190901134155752.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" width="">
+</p>
+
+<p><a href="https://blog.csdn.net/qq_43270074" target="_blank" rel="noopener"><p></p><h3 align="center">我的CSDN博客</h3></a></p><p></p>
+<p align="center">https://blog.csdn.net/qq_43270074</p>
+<p align="center">
+<img src="https://img-blog.csdnimg.cn/20190901134427411.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" width="">
+</p>
+
+<p><a href="https://freestylefly.github.io/"><p></p><h3 align="center">个人博客</h3></a></p><p></p>
+<p align="center">http://canghe.top/</p>
+<p align="center">
+<img src="https://img-blog.csdnimg.cn/20190901134518842.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" width="">
+</p>
+<a href="https://freestylefly.github.io/"><p></p><h3 align="center">微信公众号</h3><p></p></a>
+<p align="center">
+<img src="https://img-blog.csdnimg.cn/20190901134608819.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" width="">
+</p>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="苍 何 wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+	
+	
+   
+		<div>
+			<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+		</div>
+   
+	
+	
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="苍 何 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="苍 何 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>苍 何</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://freestylefly.github.io/2019/09/01/springboot与缓存（整合redis）/" title="springboot与缓存（整合redis）">http://freestylefly.github.io/2019/09/01/springboot与缓存（整合redis）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag"><i class="fa fa-tag"></i> redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/31/Docker入门到精通/" rel="next" title="Docker入门到精通">
+                <i class="fa fa-chevron-left"></i> Docker入门到精通
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/10/Linux操作系统/" rel="prev" title="Linux操作系统">
+                Linux操作系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDk5My8yMTUxMw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="苍 何">
+            
+              <p class="site-author-name" itemprop="name">苍 何</p>
+              <p class="site-description motion-element" itemprop="description">你若晴天，我便安好。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">63</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">66</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/freestylefly" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://blog.csdn.net/qq_43270074" target="_blank" title="CSDN"><i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3866366671/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="微博"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/yun-fan-80-64/activities" target="_blank" title="知乎"><i class="fa fa-fw fa-twitter"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/enfangzhong" target="_blank" title="公众号"><i class="fa fa-fw fa-facebook"></i>公众号</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="2689458656@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lruihao.cn/" title="博采众长" target="_blank">博采众长</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.leridy.pw/" title="乐余地" target="_blank">乐余地</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://tmy123.com/" title="同盟源" target="_blank">同盟源</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          <marquee>
+	<a href="/links.html">
+	<font size="4" face="STXingkai">
+		<font color="#FF0000">欢</font>
+		<font color="#E80017">迎</font>
+		<font color="#D1002E">点</font>
+		<font color="#BA0045">我</font>
+		<font color="#A3005C">互</font>
+		<font color="#A00073">换</font>
+		<font color="#A0008A">友</font>
+		<font color="#A000A1">链</font>
+		<font color="#A000B8">哦</font>
+		<font color="#A000CF">~</font>
+		<font color="#A000E6">~</font>
+	</font>
+	</a>
+</marquee>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、什么是缓存"><span class="nav-number">1.</span> <span class="nav-text">一、什么是缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、Spring缓存抽象"><span class="nav-number">2.</span> <span class="nav-text">二、Spring缓存抽象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、几个重要概念-amp-缓存注解"><span class="nav-number">3.</span> <span class="nav-text">三、几个重要概念&amp;缓存注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、Cache："><span class="nav-number">3.1.</span> <span class="nav-text">1、Cache：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、CacheManager"><span class="nav-number">3.2.</span> <span class="nav-text">2、CacheManager</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-Cacheable"><span class="nav-number">3.3.</span> <span class="nav-text">3、@Cacheable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、-CacheEvict"><span class="nav-number">3.4.</span> <span class="nav-text">4、@CacheEvict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、-CachePut"><span class="nav-number">3.5.</span> <span class="nav-text">5、@CachePut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、-EnableCaching"><span class="nav-number">3.6.</span> <span class="nav-text">6、@EnableCaching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、keyGenerator"><span class="nav-number">3.7.</span> <span class="nav-text">7、keyGenerator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、serialize"><span class="nav-number">3.8.</span> <span class="nav-text">8、serialize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9、-Cacheable-CachePut-CacheEvict-主要的参数"><span class="nav-number">3.9.</span> <span class="nav-text">9、@Cacheable/@CachePut/@CacheEvict 主要的参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、springboot整合redis实现缓存"><span class="nav-number">4.</span> <span class="nav-text">四、springboot整合redis实现缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、引入依赖"><span class="nav-number">4.1.</span> <span class="nav-text">1、引入依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、配置redis连接地址"><span class="nav-number">4.2.</span> <span class="nav-text">2、配置redis连接地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、在虚拟机或者云服务器上安装redis"><span class="nav-number">4.3.</span> <span class="nav-text">3、在虚拟机或者云服务器上安装redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、使用RestTemplate操作redis"><span class="nav-number">4.4.</span> <span class="nav-text">4、使用RestTemplate操作redis</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、-Cacheable注解"><span class="nav-number">5.</span> <span class="nav-text">五、@Cacheable注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、运行流程"><span class="nav-number">5.1.</span> <span class="nav-text">1、运行流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、核心"><span class="nav-number">5.2.</span> <span class="nav-text">2、核心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、几个属性"><span class="nav-number">5.3.</span> <span class="nav-text">3、几个属性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、-CachePut"><span class="nav-number">6.</span> <span class="nav-text">六、@CachePut</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、启用场景"><span class="nav-number">6.1.</span> <span class="nav-text">1、启用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、运行时机"><span class="nav-number">6.2.</span> <span class="nav-text">2、运行时机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、测试步骤"><span class="nav-number">6.3.</span> <span class="nav-text">3、测试步骤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七、-CacheEvict"><span class="nav-number">7.</span> <span class="nav-text">七、@CacheEvict</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存清除"><span class="nav-number">7.1.</span> <span class="nav-text">缓存清除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#八、-Caching"><span class="nav-number">8.</span> <span class="nav-text">八、@Caching</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">8.1.</span> <span class="nav-text">The more effort，the more lucky</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">8.1.1.</span> <span class="nav-text">GitHub项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">8.1.2.</span> <span class="nav-text">我的CSDN博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">8.1.3.</span> <span class="nav-text">个人博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">8.1.4.</span> <span class="nav-text">微信公众号</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+
+      
+
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DBUtils/">DBUtils</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eclipse/">Eclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emulator/">Emulator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/">JDBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jestem/">Jestem</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/">MySql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/">Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/">TCP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/">VSCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bean/">bean</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c3p0/">c3p0</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/idea/">idea</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/internit/">internit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multithreading/">multithreading</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webstorm/">webstorm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xml/">xml</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题/">主题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/习惯/">习惯</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱码/">乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/云服务器/">云服务器</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优点/">优点</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/反射/">反射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信/">微信</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拦截器/">拦截器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/改进/">改进</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器人/">机器人</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/标签库/">标签库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/流/">流</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缺点/">缺点</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/聊天/">聊天</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自我/">自我</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟机/">虚拟机</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语音/">语音</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/请求头/">请求头</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/资料/">资料</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高效能/">高效能</a><span class="tag-list-count">1</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
+
+
+
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">苍 何</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://github.com/freestylefly">GitHub</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<!--
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+-->
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://github.com/freestylefly">CangHe</a> v6.3.0</div>
+
+
+
+
+
+<font color="MediumPurple" face="STLiti">
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共135.9k字|</span>
+</div>
+</font>
+
+<font color="MediumPurple" face="STLiti"><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span></font>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("06/28/2019 22:00:00");//此处为建站时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "已苟活："+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      访问用户：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

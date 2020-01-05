@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>love line with Ms. Zhou</title>
+
+<style type="text/css">
+@font-face {
+	font-family: digit;
+	src: url('digital-7_mono.ttf') format("truetype");
+}
+
+
+</style>
+
+<link href="css/default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/garden.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+</head>
+
+<body>
+
+<!-- <embed src="http://p3qhnc0eg.bkt.clouddn.com/U%20are%20so%20beautiful.mp3" width="0" height="0" loop="-1" autostart="true"> </embed> -->
+<!-- <embed src="http://other.web.ri01.sycdn.kuwo.cn/resource/n3/19/68/2405391895.mp3" width="0" height="0" loop="-1" autostart="true"> </embed> -->
+<!--<embed src="http://www.ytmp3.cn/down/72418.mp3" width="0" height="0" loop="true" autostart="true"> </embed> -->
+
+<audio id="bgmMusic" src="lovebgm.mp3" autoplay="autoplay" loop preload="auto" type="audio/mp3"></audio>
+
+<div id="mainDiv">
+	<div id="content">
+		<div id="code" style="font-size:16px">
+        	我喜欢你，不是情话，是心里话<br />
+            你永远不知道那些一见你就会笑的人有多喜欢你</span><br />
+            <span class="keyword" style="font-size:20px">万一努力的尽头是你呢</span><br /><br />
+
+            你是我黄粱一梦里写不完的温柔<br />
+            你是我领略万物后仅存的心动<br />
+            <span class="keyword" style="font-size:20px">你连指尖都泛出好看的颜色</span><br /><br />
+
+            我这一生都是唯物主义，唯有你我希望能有下辈子 <br />
+            佛说一见钟情是灵魂认出了对方<br />
+             <span class="keyword" style="font-size:20px">其实全世界最幸福的童话，不过是，与你一起度过柴米油盐的岁月</span><br /><br />
+
+            林深时见鹿，海蓝时见鲸，梦醒时见你<br />
+            <span class="keyword" style="font-size:20px">你的过去，我来不及参与，你的未来，我奉陪到底</span><br /><br />
+
+             <hr />
+   			<span class="keyword">我想说:</span><br />
+			周颖<br />
+            <span class="keyword"> I love you! </span><br />
+            -- 江彬<br />
+
+
+		</div>
+		<div id="loveHeart">
+			<canvas id="garden"></canvas>
+			<div id="words">
+				<div id="messages">
+					相识，相知，相遇，相爱 ...
+					<div id="elapseClock"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+var offsetX = $("#loveHeart").width() / 2;
+var offsetY = $("#loveHeart").height() / 2 - 55;
+var together = new Date();
+
+together.setFullYear(2019, 8, 30);//1.23；3.29
+together.setHours(24);
+together.setMinutes(0);
+together.setSeconds(0);
+together.setMilliseconds(0);
+
+if (!document.createElement('canvas').getContext) {
+	var msg = document.createElement("div");
+	msg.id = "errorMsg";
+	msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
+	document.body.appendChild(msg);
+	$("#code").css("display", "none")
+	$("#copyright").css("position", "absolute");
+	$("#copyright").css("bottom", "10px");
+	document.execCommand("stop");
+} else {
+	setTimeout(function () {
+		startHeartAnimation();
+	}, 5000);
+
+	timeElapse(together);
+	setInterval(function () {
+		timeElapse(together);
+	}, 500);
+
+	adjustCodePosition();
+	$("#code").typewriter();
+}
+</script>
+<div style="text-align:center;clear:both">
+<p>Made for zhouying, made by <a href="https://github.com/freestylefly" target="_blank">Jiangbin<a /></p>
+<p>Copyright © 2017 - 2019. All Rights Reserved. Designed by <a href="https://github.com/freestylefly" target="_blank">Jiangbin<a /> </p>
+</div>
+</body>
+</html>

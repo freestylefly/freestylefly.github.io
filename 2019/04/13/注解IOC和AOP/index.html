@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+
+  <script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+  
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/favicon-32x32-next.png?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "d42664d6"
+    });
+  daovoice('update');
+  </script>
+
+  <meta name="description" content="Spring 注解IOC和AOP">
+<meta name="keywords" content="JavaEE, kuangjia，Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring 注解IOC和AOP">
+<meta property="og:url" content="http://freestylefly.github.io/2019/04/13/注解IOC和AOP/index.html">
+<meta property="og:site_name" content="苍 何">
+<meta property="og:description" content="Spring 注解IOC和AOP">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://pp8g2fyug.bkt.clouddn.com/github.jpg">
+<meta property="og:image" content="http://pp8g2fyug.bkt.clouddn.com/myblog..png">
+<meta property="og:image" content="http://pp8g2fyug.bkt.clouddn.com/weixingongzhonghao.jpg">
+<meta property="og:image" content="http://pp8g2fyug.bkt.clouddn.com/CSDN.png">
+<meta property="og:updated_time" content="2019-12-21T04:15:16.105Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring 注解IOC和AOP">
+<meta name="twitter:description" content="Spring 注解IOC和AOP">
+<meta name="twitter:image" content="http://pp8g2fyug.bkt.clouddn.com/github.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="苍 何" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://freestylefly.github.io/2019/04/13/注解IOC和AOP/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Spring 注解IOC和AOP | 苍 何</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <link rel="stylesheet" href="/dist/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script>
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/freestylefly"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><script>
+ function GetRandomNum(Min,Max)
+  {
+    var Range = Max - Min;
+    var Rand = Math.random();
+    return(Min + Math.round(Rand * Range));
+  }
+function setSidebarMarginTop (headerOffset) {
+    return $('#sidebar').css({ 'margin-top': headerOffset });
+  }
+ function getHeaderOffset () {
+    return $('.header-inner').height() + CONFIG.sidebar.offset;
+  }
+  window.onload=function(){
+    var subtitle = "我翻山越岭，终寻一人等候。W和梦想平等交易，和喧嚣保持距离。W希望你好，希望你顺利，即使小有坎坷，偶遇困顿也能化险为夷。W成熟是给你陌生人看的，逗比是给朋友看的，幼稚是给喜欢的人看的。W不要说了，我不会屈服。W刚刚又没忍住，往宇宙里发送了想你的脑电波。";
+     var mytitle = subtitle.split("W");
+     var max = mytitle.length-1;
+     var index = GetRandomNum(0,max);
+     var text = mytitle[index];
+     $("#helloTitle").html(text);
+     var headOffset = getHeaderOffset();
+     setSidebarMarginTop(headOffset);
+     //动态subtitle设置
+  }
+</script>
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">苍 何</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  
+    <p style="color:#black;font-size:18px;font-family:STXingkai" id="helloTitle" class="site-subtitle"></p>
+  
+
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+    <a href="/guestbook" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>留言</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-love">
+    <a href="/love/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>love</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-loveshow">
+    <a href="/loveshow/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>loveshow</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-lovephoto">
+    <a href="/lovePhoto/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>lovePhoto</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-showlove">
+    <a href="/showLove/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>showLove</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+    <a href="/404/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>公益 404</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://freestylefly.github.io/2019/04/13/注解IOC和AOP/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="苍 何">
+      <meta itemprop="description" content="你若晴天，我便安好。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="苍 何">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring 注解IOC和AOP
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-13 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-13T00:00:00+08:00">2019-04-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-21 12:15:16" itemprop="dateModified" datetime="2019-12-21T12:15:16+08:00">2019-12-21</time>
+              
+            
+          </span>
+
+
+          
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JavaEE框架/" itemprop="url" rel="index"><span itemprop="name">JavaEE框架</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+            <span class="post-meta-divider">|</span>
+<span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>文章字数： 2,189</span>
+
+<span class="post-meta-divider">|</span>
+<span title="post.min2read"><span class="post-meta-item-icon"><i class="fa fa-clock-o"></i></span>阅读时长： 9分钟</span>
+
+          
+
+          
+
+          
+              <div class="post-description">Spring 注解IOC和AOP</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本系列文章在 <a href="https://github.com/freestylefly/javaStudy" target="_blank" rel="noopener">https://github.com/freestylefly/javaStudy</a> 持(huan)续(ying)更(jia)新(ru)中，欢迎有兴趣的童鞋们关注。</p>
+<h1 id="一、Spring的bean管理（注解方式）"><a href="#一、Spring的bean管理（注解方式）" class="headerlink" title="一、Spring的bean管理（注解方式）"></a>一、Spring的bean管理（注解方式）</h1><h2 id="1、配置组件扫描"><a href="#1、配置组件扫描" class="headerlink" title="1、配置组件扫描"></a>1、配置组件扫描</h2><p>扫描类下的注解，哪些包下的类需要使用IOC注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Spring 的注解开发:组件扫描(类上注解: 可以直接使用属性注入的注解) --&gt;</span><br><span class="line">&lt;context:component-scan base-<span class="keyword">package</span>=<span class="string">"com.itheima.spring.demo1"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="2、在类上添加注解"><a href="#2、在类上添加注解" class="headerlink" title="2、在类上添加注解"></a>2、在类上添加注解</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>(value=<span class="string">"userDao"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">implements</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">System.out.println(<span class="string">"Hello Spring Annotation..."</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>相当于在xml中用bean标签配置类</p>
+<h1 id="二、Spring的bean管理常用注解"><a href="#二、Spring的bean管理常用注解" class="headerlink" title="二、Spring的bean管理常用注解"></a>二、Spring的bean管理常用注解</h1><h2 id="1、-Component-组件-作用在类上"><a href="#1、-Component-组件-作用在类上" class="headerlink" title="1、@Component:组件.(作用在类上)"></a>1、@Component:组件.(作用在类上)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Spring 中提供<span class="meta">@Component</span> 的三个衍生注解:(功能目前来讲是一致的)</span><br><span class="line">* <span class="meta">@Controller</span> :WEB 层</span><br><span class="line">* <span class="meta">@Service</span> :业务层</span><br><span class="line">* <span class="meta">@Repository</span> :持久层</span><br><span class="line">这三个注解是为了让标注类本身的用途清晰，Spring 在后续版本会对其增强</span><br></pre></td></tr></table></figure>
+<h2 id="2、属性注入的注解-使用注解注入的方式-可以不用提供-set-方法"><a href="#2、属性注入的注解-使用注解注入的方式-可以不用提供-set-方法" class="headerlink" title="2、属性注入的注解:(使用注解注入的方式,可以不用提供 set 方法.)"></a>2、属性注入的注解:(使用注解注入的方式,可以不用提供 set 方法.)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value</span> :用于注入普通类型.</span><br><span class="line"><span class="meta">@Autowired</span> :自动装配:</span><br><span class="line">* 默认按类型进行装配.</span><br><span class="line">* 按名称注入:</span><br><span class="line">* <span class="meta">@Qualifier</span>:强制使用名称注入.</span><br><span class="line"><span class="meta">@Resource</span> 相当于:</span><br><span class="line">* <span class="meta">@Autowired</span> 和<span class="meta">@Qualifier</span> 一起使用.</span><br></pre></td></tr></table></figure>
+<h2 id="3、Bean-的作用范围的注解"><a href="#3、Bean-的作用范围的注解" class="headerlink" title="3、Bean 的作用范围的注解"></a>3、Bean 的作用范围的注解</h2><p>@Scope:</p>
+<ul>
+<li>singleton:单例</li>
+<li>prototype:多例</li>
+</ul>
+<h2 id="4、-Bean-的生命周期的配置"><a href="#4、-Bean-的生命周期的配置" class="headerlink" title="4、 Bean 的生命周期的配置"></a>4、 Bean 的生命周期的配置</h2><p>@PostConstruct :相当于 init-method<br>@PreDestroy :相当于 destroy-method</p>
+<h1 id="三、注解和xml对bean管理区别"><a href="#三、注解和xml对bean管理区别" class="headerlink" title="三、注解和xml对bean管理区别"></a>三、注解和xml对bean管理区别</h1><h2 id="1、区别"><a href="#1、区别" class="headerlink" title="1、区别"></a>1、区别</h2><p>XML 和注解:</p>
+<ul>
+<li>XML :结构清晰.</li>
+<li>注解 :开发方便.(属性注入.)<br>实际开发中还有一种 XML 和注解整合开发:</li>
+</ul>
+<p>注意：注解方式的这个类是自己提供，但是xml的话可以适用所有类</p>
+<h2 id="2、两种方式结合"><a href="#2、两种方式结合" class="headerlink" title="2、两种方式结合"></a>2、两种方式结合</h2><p>Bean 有 XML 配置.但是使用的属性使用注解注入.</p>
+<p>在没有扫描下，使用属性注入的注解，需要加上这个配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;context:annotation-config&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="四、AOP的概述"><a href="#四、AOP的概述" class="headerlink" title="四、AOP的概述"></a>四、AOP的概述</h1><h2 id="1、什么是AOP"><a href="#1、什么是AOP" class="headerlink" title="1、什么是AOP"></a>1、什么是AOP</h2><p>AOP是指面向切面编程，是oop的延续，可以为业务逻辑的各个部分进行隔离，解决oop开发遇到的问题，使得业务间的耦合性降低</p>
+<h2 id="2、AOP特点"><a href="#2、AOP特点" class="headerlink" title="2、AOP特点"></a>2、AOP特点</h2><p>可以对程序，或者通俗的说是对类的方法进行增强，在不修改源代码的条件下</p>
+<p>AOP可以进行权限校验，日志记录，性能监控，事务控制</p>
+<h2 id="3、AOP的底层实现原理"><a href="#3、AOP的底层实现原理" class="headerlink" title="3、AOP的底层实现原理"></a>3、AOP的底层实现原理</h2><p>底层利用了代理机制</p>
+<p>Spring 的 AOP 的底层用到两种代理机制：</p>
+<ul>
+<li>JDK 的动态代理 :针对实现了接口的类产生代理.</li>
+<li>Cglib 的动态代理 :针对没有实现接口的类产生代理. 应用的是底层的字节码增强的技术 生成当前类<br>的子类对象.</li>
+</ul>
+<h2 id="4、Spring底层AOP的实现原理"><a href="#4、Spring底层AOP的实现原理" class="headerlink" title="4、Spring底层AOP的实现原理"></a>4、Spring底层AOP的实现原理</h2><p>1）JDK 动态代理增强一个类中方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyJDKProxy</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> UserDao userDao;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">MyJDKProxy</span><span class="params">(UserDao userDao)</span> </span>&#123;</span><br><span class="line"><span class="keyword">this</span>.userDao = userDao;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 编写工具方法：生成代理：</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> UserDao <span class="title">createProxy</span><span class="params">()</span></span>&#123;</span><br><span class="line">UserDao userDaoProxy = (UserDao)</span><br><span class="line">Proxy.newProxyInstance(userDao.getClass().getClassLoader(),</span><br><span class="line">userDao.getClass().getInterfaces(), <span class="keyword">this</span>);</span><br><span class="line"><span class="keyword">return</span> userDaoProxy;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">if</span>(<span class="string">"save"</span>.equals(method.getName()))&#123;</span><br><span class="line">System.out.println(<span class="string">"权限校验================"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> method.invoke(userDao, args);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2）Cglib 动态代理增强一个类中的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCglibProxy</span> <span class="keyword">implements</span> <span class="title">MethodInterceptor</span></span>&#123;</span><br><span class="line"><span class="keyword">private</span> CustomerDao customerDao;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">MyCglibProxy</span><span class="params">(CustomerDao customerDao)</span></span>&#123;</span><br><span class="line"><span class="keyword">this</span>.customerDao = customerDao;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 生成代理的方法:</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> CustomerDao <span class="title">createProxy</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">// 创建 Cglib 的核心类:</span></span><br><span class="line">Enhancer enhancer = <span class="keyword">new</span> Enhancer();</span><br><span class="line"><span class="comment">// 设置父类:</span></span><br><span class="line">enhancer.setSuperclass(CustomerDao.class);</span><br><span class="line"><span class="comment">// 设置回调:</span></span><br><span class="line">enhancer.setCallback(<span class="keyword">this</span>);</span><br><span class="line"><span class="comment">// 生成代理：</span></span><br><span class="line">CustomerDao customerDaoProxy = (CustomerDao) enhancer.create();</span><br><span class="line"><span class="keyword">return</span> customerDaoProxy;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object proxy, Method method, Object[] args, MethodProxy</span></span></span><br><span class="line"><span class="function"><span class="params">methodProxy)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line"><span class="keyword">if</span>(<span class="string">"delete"</span>.equals(method.getName()))&#123;</span><br><span class="line">Object obj = methodProxy.invokeSuper(proxy, args);</span><br><span class="line">System.out.println(<span class="string">"日志记录================"</span>);</span><br><span class="line"><span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> methodProxy.invokeSuper(proxy, args);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="五、AOP-的开发中的相关术语"><a href="#五、AOP-的开发中的相关术语" class="headerlink" title="五、AOP 的开发中的相关术语"></a>五、AOP 的开发中的相关术语</h1><h2 id="1、连接点Joinpoint"><a href="#1、连接点Joinpoint" class="headerlink" title="1、连接点Joinpoint"></a>1、连接点Joinpoint</h2><p>可以被拦截到的点，在 spring 中,这些点指的是方法,因为 spring 只支持方法类型的连接点。</p>
+<h2 id="2、切入点Pointcut"><a href="#2、切入点Pointcut" class="headerlink" title="2、切入点Pointcut"></a>2、切入点Pointcut</h2><p>真正被拦截到的点，就是我们真正需要去增强的方法</p>
+<h2 id="3、通知-增强Advice"><a href="#3、通知-增强Advice" class="headerlink" title="3、通知/增强Advice"></a>3、通知/增强Advice</h2><p>就是为切入点增强功能的那些个方法，比如权限校验方法等.通知分为前置通知,后置<br>通知,异常通知,最终通知,环绕通知(切面要完成的功能)</p>
+<h2 id="4、切面Aspect"><a href="#4、切面Aspect" class="headerlink" title="4、切面Aspect"></a>4、切面Aspect</h2><p>是切入点和通知（引介）的结合</p>
+<h2 id="5、引介Introduction"><a href="#5、引介Introduction" class="headerlink" title="5、引介Introduction"></a>5、引介Introduction</h2><p>引介是一种特殊的通知在不修改类代码的前提下, Introduction 可以在运行期为类动态地添加一些方法或 Field.，是类层面的</p>
+<h2 id="6、目标对象Target"><a href="#6、目标对象Target" class="headerlink" title="6、目标对象Target"></a>6、目标对象Target</h2><p>:代理的目标对象</p>
+<h2 id="7、织入Weaving"><a href="#7、织入Weaving" class="headerlink" title="7、织入Weaving"></a>7、织入Weaving</h2><p>是指把增强应用到目标对象来创建新的代理对象的过程，spring 采用动态代理织入，</p>
+<h2 id="8、代理Proxy"><a href="#8、代理Proxy" class="headerlink" title="8、代理Proxy"></a>8、代理Proxy</h2><p>一个类被 AOP 织入增强后，就产生一个结果代理类</p>
+<h1 id="六、Spring使用-AspectJ-进行-AOP-的开发：XML-的方式"><a href="#六、Spring使用-AspectJ-进行-AOP-的开发：XML-的方式" class="headerlink" title="六、Spring使用 AspectJ 进行 AOP 的开发：XML 的方式"></a>六、Spring使用 AspectJ 进行 AOP 的开发：XML 的方式</h1><h2 id="1、Spring整合Junit进行单元测试"><a href="#1、Spring整合Junit进行单元测试" class="headerlink" title="1、Spring整合Junit进行单元测试"></a>1、Spring整合Junit进行单元测试</h2><p>引入Spring-test的jar包，不需要再创建工厂，直接测试</p>
+<p>类注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</span><br><span class="line"><span class="meta">@ContextConfiguration</span>(<span class="string">"classpath:applicationContext.xml"</span>)</span><br></pre></td></tr></table></figure>
+<p>依赖注入：</p>
+<p>@Resource(name=”orderDao”)</p>
+<h2 id="2、编写切面类"><a href="#2、编写切面类" class="headerlink" title="2、编写切面类"></a>2、编写切面类</h2><p>将增强的方法放进来，比如权限校验等</p>
+<h2 id="3、通过AOP配置，为目标类生成代理"><a href="#3、通过AOP配置，为目标类生成代理" class="headerlink" title="3、通过AOP配置，为目标类生成代理"></a>3、通过AOP配置，为目标类生成代理</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 配置切面类 --&gt;</span><br><span class="line">&lt;bean id="myAspectXml" class="cn.itcast.spring.demo3.MyAspectXml"&gt;&lt;/bean&gt;</span><br><span class="line">&lt;!-- 进行 aop 的配置 --&gt;</span><br><span class="line">&lt;aop:config&gt;</span><br><span class="line">&lt;!-- 配置切入点表达式:哪些类的哪些方法需要进行增强 --&gt;</span><br><span class="line">&lt;aop:pointcut expression=<span class="string">"execution(*</span></span><br><span class="line"><span class="string">cn.itcast.spring.demo3.OrderDao.save(..))"</span> id=<span class="string">"pointcut1"</span>/&gt;</span><br><span class="line">&lt;!-- 配置切面 --&gt;</span><br><span class="line">&lt;aop:aspect ref=<span class="string">"myAspectXml"</span>&gt;</span><br><span class="line">&lt;aop:before method=<span class="string">"before"</span> pointcut-ref=<span class="string">"pointcut1"</span>/&gt;</span><br><span class="line">&lt;/aop:aspect&gt;</span><br><span class="line">&lt;/aop:config&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="4、其他增强的配置"><a href="#4、其他增强的配置" class="headerlink" title="4、其他增强的配置"></a>4、其他增强的配置</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;aop:config&gt;</span><br><span class="line">		&lt;!-- 表达式配置哪些类的哪些方法需要增强  点点代表任意参数--&gt;</span><br><span class="line">		&lt;aop:pointcut expression=<span class="string">"execution(* com.canghe.demo1.PruductDaoImpl.save(..))"</span> id=<span class="string">"pointcut1"</span>/&gt;</span><br><span class="line">		&lt;aop:pointcut expression=<span class="string">"execution(* com.canghe.demo1.PruductDaoImpl.delete(..))"</span> id=<span class="string">"pointcut2"</span>/&gt;</span><br><span class="line">		&lt;aop:pointcut expression=<span class="string">"execution(* com.canghe.demo1.PruductDaoImpl.update(..))"</span> id=<span class="string">"pointcut3"</span>/&gt;</span><br><span class="line">		&lt;aop:pointcut expression=<span class="string">"execution(* com.canghe.demo1.PruductDaoImpl.find(..))"</span> id=<span class="string">"pointcut4"</span>/&gt;</span><br><span class="line">		&lt;!-- 配置切面 --&gt;</span><br><span class="line">		&lt;aop:aspect ref=<span class="string">"myAspect"</span>&gt;</span><br><span class="line">			&lt;!-- 配置前置通知 --&gt;</span><br><span class="line">			&lt;aop:before method=<span class="string">"checkPri"</span> pointcut-ref=<span class="string">"pointcut1"</span>/&gt;</span><br><span class="line">			&lt;!-- 配置后置通知 --&gt;</span><br><span class="line">			&lt;aop:after-returning method=<span class="string">"weiteLog"</span> pointcut-ref=<span class="string">"pointcut2"</span> returning=<span class="string">"result"</span>/&gt;</span><br><span class="line">			&lt;!-- 配置环绕通知 --&gt;</span><br><span class="line">			&lt;aop:around method=<span class="string">"around"</span> pointcut-ref=<span class="string">"pointcut3"</span>/&gt;</span><br><span class="line">			&lt;!-- 配置异常抛出通知 --&gt;</span><br><span class="line">			&lt;aop:after-throwing method=<span class="string">"afterThrowing"</span> pointcut-ref=<span class="string">"pointcut4"</span> throwing=<span class="string">"ex"</span> /&gt;</span><br><span class="line">			&lt;!-- 配最终异知 --&gt;</span><br><span class="line">			&lt;aop:after method=<span class="string">"after"</span> pointcut-ref=<span class="string">"pointcut4"</span> /&gt;</span><br><span class="line">		&lt;/aop:aspect&gt;</span><br><span class="line">	&lt;/aop:config&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="七、Spring通知类型和使用"><a href="#七、Spring通知类型和使用" class="headerlink" title="七、Spring通知类型和使用"></a>七、Spring通知类型和使用</h1><p>每种通知均可获得切入点信息</p>
+<h2 id="1、前置通知"><a href="#1、前置通知" class="headerlink" title="1、前置通知"></a>1、前置通知</h2><p>如权限校验</p>
+<p>在目标方法执行之前执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;aop:before method=&quot;checkPri&quot; pointcut-ref=&quot;pointcut1&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="2、后置通知"><a href="#2、后置通知" class="headerlink" title="2、后置通知"></a>2、后置通知</h2><p>如：日志记录</p>
+<p>在目标方法执行之后执行</p>
+<p>获得方法的返回值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 配置后置通知 --&gt;</span><br><span class="line">&lt;aop:after-returning method=<span class="string">"weiteLog"</span> pointcut-ref=<span class="string">"pointcut2"</span> returning=<span class="string">"result"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>然后将result作为参数传入切面中的通知</p>
+<h2 id="3、环绕通知"><a href="#3、环绕通知" class="headerlink" title="3、环绕通知"></a>3、环绕通知</h2><p>如：性能监控</p>
+<p>在目标方法执行前和执行后执行</p>
+<p>可以阻止目标方法的执行</p>
+<p>在通知类方法要有Object返回值，设置如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 环绕通知——性能监控</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> Throwable </span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> Object <span class="title">around</span><span class="params">(ProceedingJoinPoint joinPoint)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">	 System.out.println(<span class="string">"环绕通知前=============="</span>);</span><br><span class="line">	 Object object = joinPoint.proceed();</span><br><span class="line">	 System.out.println(<span class="string">"环绕通知后=============="</span>);</span><br><span class="line">	 <span class="keyword">return</span> object;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4、异常抛出通知"><a href="#4、异常抛出通知" class="headerlink" title="4、异常抛出通知"></a>4、异常抛出通知</h2><p>在目标方法执行出现 异常的时候 执行</p>
+<p>可得到异常信息，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 配置异常抛出通知 --&gt;</span><br><span class="line">			&lt;aop:after-throwing method=<span class="string">"afterThrowing"</span> pointcut-ref=<span class="string">"pointcut4"</span> throwing=<span class="string">"ex"</span> /&gt;</span><br><span class="line">			 <span class="comment">/**</span></span><br><span class="line"><span class="comment">	  * 异常抛出通知</span></span><br><span class="line"><span class="comment">	  */</span></span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterThrowing</span><span class="params">(Throwable ex)</span> </span>&#123;</span><br><span class="line">		 System.out.println(<span class="string">"异常抛出通知============="</span>+ex.getMessage());</span><br><span class="line">	 &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5、最终通知"><a href="#5、最终通知" class="headerlink" title="5、最终通知"></a>5、最终通知</h2><p>无论目标方法是否出现异常 最终通知都会 执行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 配最终异知 --&gt;</span><br><span class="line">			&lt;aop:after method=<span class="string">"after"</span> pointcut-ref=<span class="string">"pointcut4"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>layout: post<br>title: webstorm 上导入文件中文乱码问题解决<br>categories: JavaWeb前端基础<br>description: webstorm 上导入文件中文乱码问题解决</p>
+<h2 id="keywords-JavaEE-HTML-CSS-webstorm"><a href="#keywords-JavaEE-HTML-CSS-webstorm" class="headerlink" title="keywords: JavaEE, HTML,CSS,webstorm"></a>keywords: JavaEE, HTML,CSS,webstorm</h2><p>本系列文章在 <a href="https://github.com/freestylefly/javaStudy" target="_blank" rel="noopener">https://github.com/freestylefly/javaStudy</a> 持(huan)续(ying)更(jia)新(入)中，欢迎有兴趣的童鞋们关注。</p>
+<h1 id="八、切入点表达式写法"><a href="#八、切入点表达式写法" class="headerlink" title="八、切入点表达式写法"></a>八、切入点表达式写法</h1><p>execution(表达式)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">表达式:</span><br><span class="line">[方法访问修饰符] 方法返回值 包名.类名.方法名(方法的参数)</span><br><span class="line">public * cn.itcast.spring.dao.*.*(..)</span><br><span class="line">* cn.itcast.spring.dao.*.*(..)</span><br><span class="line">* cn.itcast.spring.dao.UserDao+.*(..)</span><br><span class="line">* cn.itcast.spring.dao..*.*(..)</span><br></pre></td></tr></table></figure>
+<h1 id="九、AOP核心思想"><a href="#九、AOP核心思想" class="headerlink" title="九、AOP核心思想"></a>九、AOP核心思想</h1><p>鞥切面扩展程序，想要增强某一个方法，来一个切面然后配置一下就好了，不需要修改源代码</p>
+<hr>
+<h1 id="本文章已同步至我的GitHub仓库：Javastudy-期待您的加入-blush"><a href="#本文章已同步至我的GitHub仓库：Javastudy-期待您的加入-blush" class="headerlink" title="本文章已同步至我的GitHub仓库：Javastudy,期待您的加入:blush:"></a>本文章已同步至我的GitHub仓库：<a href="https://github.com/freestylefly/javaStudy" target="_blank" rel="noopener">Javastudy</a>,期待您的加入:blush:</h1><p><img src="http://pp8g2fyug.bkt.clouddn.com/github.jpg" width=""></p>
+<h1 id="本文章已同步至苍何的个人博客-可以直接在博客上留言哦-blush"><a href="#本文章已同步至苍何的个人博客-可以直接在博客上留言哦-blush" class="headerlink" title="本文章已同步至苍何的个人博客,可以直接在博客上留言哦:blush:"></a>本文章已同步至<a href="https://freestylefly.github.io/">苍何的个人博客</a>,可以直接在博客上留言哦:blush:</h1><p><img src="http://pp8g2fyug.bkt.clouddn.com/myblog..png" width=""></p>
+<h1 id="来我的微信公众号玩耍呗-blush"><a href="#来我的微信公众号玩耍呗-blush" class="headerlink" title="来我的微信公众号玩耍呗:blush:"></a>来我的微信公众号玩耍呗:blush:</h1><p><img src="http://pp8g2fyug.bkt.clouddn.com/weixingongzhonghao.jpg" width=""></p>
+<h1 id="扫码无套路关注我的CSDN博客-blush"><a href="#扫码无套路关注我的CSDN博客-blush" class="headerlink" title="扫码无套路关注我的CSDN博客:blush:"></a>扫码无套路关注我的<a href="https://blog.csdn.net/qq_43270074?orderby=UpdateTime" target="_blank" rel="noopener">CSDN</a>博客:blush:</h1><p><img src="http://pp8g2fyug.bkt.clouddn.com/CSDN.png" width=""></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="苍 何 wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+	
+	
+   
+		<div>
+			<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+		</div>
+   
+	
+	
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="苍 何 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="苍 何 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>苍 何</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://freestylefly.github.io/2019/04/13/注解IOC和AOP/" title="Spring 注解IOC和AOP">http://freestylefly.github.io/2019/04/13/注解IOC和AOP/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"><i class="fa fa-tag"></i> Spring</a>
+          
+            <a href="/tags/bean/" rel="tag"><i class="fa fa-tag"></i> bean</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/13/N个人站圈报数算法问题/" rel="next" title="N个人站圈报数算法问题">
+                <i class="fa fa-chevron-left"></i> N个人站圈报数算法问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/13/struts2入门&常见配置/" rel="prev" title="struts2 入门&常见配置">
+                struts2 入门&常见配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDk5My8yMTUxMw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="苍 何">
+            
+              <p class="site-author-name" itemprop="name">苍 何</p>
+              <p class="site-description motion-element" itemprop="description">你若晴天，我便安好。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">63</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">66</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/freestylefly" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://blog.csdn.net/qq_43270074" target="_blank" title="CSDN"><i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3866366671/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="微博"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/yun-fan-80-64/activities" target="_blank" title="知乎"><i class="fa fa-fw fa-twitter"></i>知乎</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/enfangzhong" target="_blank" title="公众号"><i class="fa fa-fw fa-facebook"></i>公众号</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="2689458656@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lruihao.cn/" title="博采众长" target="_blank">博采众长</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.leridy.pw/" title="乐余地" target="_blank">乐余地</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://tmy123.com/" title="同盟源" target="_blank">同盟源</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          <marquee>
+	<a href="/links.html">
+	<font size="4" face="STXingkai">
+		<font color="#FF0000">欢</font>
+		<font color="#E80017">迎</font>
+		<font color="#D1002E">点</font>
+		<font color="#BA0045">我</font>
+		<font color="#A3005C">互</font>
+		<font color="#A00073">换</font>
+		<font color="#A0008A">友</font>
+		<font color="#A000A1">链</font>
+		<font color="#A000B8">哦</font>
+		<font color="#A000CF">~</font>
+		<font color="#A000E6">~</font>
+	</font>
+	</a>
+</marquee>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、Spring的bean管理（注解方式）"><span class="nav-number">1.</span> <span class="nav-text">一、Spring的bean管理（注解方式）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、配置组件扫描"><span class="nav-number">1.1.</span> <span class="nav-text">1、配置组件扫描</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、在类上添加注解"><span class="nav-number">1.2.</span> <span class="nav-text">2、在类上添加注解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、Spring的bean管理常用注解"><span class="nav-number">2.</span> <span class="nav-text">二、Spring的bean管理常用注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-Component-组件-作用在类上"><span class="nav-number">2.1.</span> <span class="nav-text">1、@Component:组件.(作用在类上)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、属性注入的注解-使用注解注入的方式-可以不用提供-set-方法"><span class="nav-number">2.2.</span> <span class="nav-text">2、属性注入的注解:(使用注解注入的方式,可以不用提供 set 方法.)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、Bean-的作用范围的注解"><span class="nav-number">2.3.</span> <span class="nav-text">3、Bean 的作用范围的注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、-Bean-的生命周期的配置"><span class="nav-number">2.4.</span> <span class="nav-text">4、 Bean 的生命周期的配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、注解和xml对bean管理区别"><span class="nav-number">3.</span> <span class="nav-text">三、注解和xml对bean管理区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、区别"><span class="nav-number">3.1.</span> <span class="nav-text">1、区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、两种方式结合"><span class="nav-number">3.2.</span> <span class="nav-text">2、两种方式结合</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、AOP的概述"><span class="nav-number">4.</span> <span class="nav-text">四、AOP的概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、什么是AOP"><span class="nav-number">4.1.</span> <span class="nav-text">1、什么是AOP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、AOP特点"><span class="nav-number">4.2.</span> <span class="nav-text">2、AOP特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、AOP的底层实现原理"><span class="nav-number">4.3.</span> <span class="nav-text">3、AOP的底层实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、Spring底层AOP的实现原理"><span class="nav-number">4.4.</span> <span class="nav-text">4、Spring底层AOP的实现原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、AOP-的开发中的相关术语"><span class="nav-number">5.</span> <span class="nav-text">五、AOP 的开发中的相关术语</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、连接点Joinpoint"><span class="nav-number">5.1.</span> <span class="nav-text">1、连接点Joinpoint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、切入点Pointcut"><span class="nav-number">5.2.</span> <span class="nav-text">2、切入点Pointcut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、通知-增强Advice"><span class="nav-number">5.3.</span> <span class="nav-text">3、通知/增强Advice</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、切面Aspect"><span class="nav-number">5.4.</span> <span class="nav-text">4、切面Aspect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、引介Introduction"><span class="nav-number">5.5.</span> <span class="nav-text">5、引介Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、目标对象Target"><span class="nav-number">5.6.</span> <span class="nav-text">6、目标对象Target</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、织入Weaving"><span class="nav-number">5.7.</span> <span class="nav-text">7、织入Weaving</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、代理Proxy"><span class="nav-number">5.8.</span> <span class="nav-text">8、代理Proxy</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、Spring使用-AspectJ-进行-AOP-的开发：XML-的方式"><span class="nav-number">6.</span> <span class="nav-text">六、Spring使用 AspectJ 进行 AOP 的开发：XML 的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、Spring整合Junit进行单元测试"><span class="nav-number">6.1.</span> <span class="nav-text">1、Spring整合Junit进行单元测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、编写切面类"><span class="nav-number">6.2.</span> <span class="nav-text">2、编写切面类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、通过AOP配置，为目标类生成代理"><span class="nav-number">6.3.</span> <span class="nav-text">3、通过AOP配置，为目标类生成代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、其他增强的配置"><span class="nav-number">6.4.</span> <span class="nav-text">4、其他增强的配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七、Spring通知类型和使用"><span class="nav-number">7.</span> <span class="nav-text">七、Spring通知类型和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、前置通知"><span class="nav-number">7.1.</span> <span class="nav-text">1、前置通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、后置通知"><span class="nav-number">7.2.</span> <span class="nav-text">2、后置通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、环绕通知"><span class="nav-number">7.3.</span> <span class="nav-text">3、环绕通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、异常抛出通知"><span class="nav-number">7.4.</span> <span class="nav-text">4、异常抛出通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、最终通知"><span class="nav-number">7.5.</span> <span class="nav-text">5、最终通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#keywords-JavaEE-HTML-CSS-webstorm"><span class="nav-number">7.6.</span> <span class="nav-text">keywords: JavaEE, HTML,CSS,webstorm</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#八、切入点表达式写法"><span class="nav-number">8.</span> <span class="nav-text">八、切入点表达式写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#九、AOP核心思想"><span class="nav-number">9.</span> <span class="nav-text">九、AOP核心思想</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文章已同步至我的GitHub仓库：Javastudy-期待您的加入-blush"><span class="nav-number">10.</span> <span class="nav-text">本文章已同步至我的GitHub仓库：Javastudy,期待您的加入:blush:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文章已同步至苍何的个人博客-可以直接在博客上留言哦-blush"><span class="nav-number">11.</span> <span class="nav-text">本文章已同步至苍何的个人博客,可以直接在博客上留言哦:blush:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#来我的微信公众号玩耍呗-blush"><span class="nav-number">12.</span> <span class="nav-text">来我的微信公众号玩耍呗:blush:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扫码无套路关注我的CSDN博客-blush"><span class="nav-number">13.</span> <span class="nav-text">扫码无套路关注我的CSDN博客:blush:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+
+      
+
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DBUtils/">DBUtils</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eclipse/">Eclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emulator/">Emulator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/">Hibernate</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/">JDBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jestem/">Jestem</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/">MySql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/">Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVN/">SVN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/">TCP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/">VSCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bean/">bean</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c3p0/">c3p0</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/idea/">idea</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/internit/">internit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multithreading/">multithreading</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webstorm/">webstorm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xml/">xml</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/主题/">主题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/习惯/">习惯</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/乱码/">乱码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/云服务器/">云服务器</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优点/">优点</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/反射/">反射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信/">微信</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拦截器/">拦截器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/改进/">改进</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器人/">机器人</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/标签库/">标签库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/流/">流</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缺点/">缺点</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/聊天/">聊天</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自我/">自我</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟机/">虚拟机</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语音/">语音</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/请求头/">请求头</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/资料/">资料</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高效能/">高效能</a><span class="tag-list-count">1</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
+
+
+
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">苍 何</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://github.com/freestylefly">GitHub</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<!--
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+-->
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://github.com/freestylefly">CangHe</a> v6.3.0</div>
+
+
+
+
+
+<font color="MediumPurple" face="STLiti">
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共135.9k字|</span>
+</div>
+</font>
+
+<font color="MediumPurple" face="STLiti"><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span></font>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("06/28/2019 22:00:00");//此处为建站时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "已苟活："+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      访问用户：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
