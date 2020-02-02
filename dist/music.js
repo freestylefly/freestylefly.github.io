@@ -6,7 +6,7 @@ const ap = new APlayer({
 	{
         name: '欢迎您',
         artist: '光临',
-        url: 'https://tsn.baidu.com/text2audio?tex=周颖我爱你，你好呀，欢迎您光临我的博客，有问题您可以点击右下角的在线客服，我会第一时间联系您，您也可以在留言区留言或者文章底部留言&lan=zh&cuid=123456&ctp=1&tok=24.9e25f97efb85031ea49b8799dbb3cce5.2592000.1580828796.282335-16799902',
+        url: 'https://tsn.baidu.com/text2audio?tex=你好呀，欢迎您光临我的博客，有问题您可以点击右下角的在线客服，我会第一时间联系您，您也可以在留言区留言或者文章底部留言&lan=zh&cuid=123456&ctp=1&tok=24.9eea09bfce2e1f93f357997feaf25437.2592000.1565633141.282335-16799902',
         cover: 'http://img.ytmp3.cn/image/8.jpg',
       },
 	{
