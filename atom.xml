@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://freestylefly.github.io/"/>
-  <updated>2020-03-29T10:01:46.355Z</updated>
+  <updated>2020-03-29T10:24:43.260Z</updated>
   <id>http://freestylefly.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://freestylefly.github.io/2020/03/28/%E7%96%AB%E6%83%85%E4%B9%8B%E4%B8%8B%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%A4%A7%E8%83%86%E8%B7%B3%E6%A7%BD%E7%9A%84/"/>
-    <id>http://freestylefly.github.io/2020/03/28/疫情之下我是如何大胆跳槽的/</id>
-    <published>2020-03-27T16:00:00.000Z</published>
-    <updated>2020-03-29T10:01:46.355Z</updated>
+    <title>疫情之下我是如何大胆跳槽的</title>
+    <link href="http://freestylefly.github.io/2020/02/28/%E7%96%AB%E6%83%85%E4%B9%8B%E4%B8%8B%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%A4%A7%E8%83%86%E8%B7%B3%E6%A7%BD%E7%9A%84/"/>
+    <id>http://freestylefly.github.io/2020/02/28/疫情之下我是如何大胆跳槽的/</id>
+    <published>2020-02-28T09:47:59.000Z</published>
+    <updated>2020-03-29T10:24:43.260Z</updated>
     
     <content type="html"><![CDATA[<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><pre><code>一场突如其来的疫情打乱了很多人的计划，起初没有人在意，直到这场灾难和每个人息息相关。</code></pre><p>企业停工，招聘也随之缩减，别说招聘，有些企业甚至开始了裁员；这个时候。很多人并不愿意冒险离职去寻求新的工作机会，这也会导致招聘市场上放出的岗位很少。<br>从二月初开始关注招聘市场，在java工程师这块的深圳招聘数目并不多。但逆境中总有机遇，就像巴菲特所说“众人贪婪时我恐惧，众人恐惧时我贪婪”。<br>二月初开始准备，历时近一个月，面试十余家公司，历经数十轮面试。最终收到6个offer，综合对比，去了最满意的公司。<br>写这篇文章一来是这么多次面试算是一个总结，二来正值金三银四也给有需要找java开发岗位的朋友复习的思路。</p><h2 id="二、我的备战"><a href="#二、我的备战" class="headerlink" title="二、我的备战"></a>二、我的备战</h2><p>不打无准备的仗，一旦准备跳槽，就要着手开始复习，万事开头难，列出合理的复习计划又是最为重要的环节，我的整体规划如下：<br>1、优化简历，并在各大平台更新简历<br>2、java基础的复习<br>3、数据结构和算法复习<br>4、框架复习<br>5、高并发和分布式<br>6、已做项目的总结归纳<br>下面会就具体环境详细讲解注意的地方。<br>贴出一些复习时做的笔记，以及面试的题目总结，都是公司实战面试题目（ps：笔记过多，不全贴出，需要的可以加我vx，或者后台私信我，给发压缩包，包括面试的视频、简历模板以及复习的pdf文档）<br><img src="https://img-blog.csdnimg.cn/20200328225531455.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2020032822562216.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200328225721106.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMjcwMDc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="三、优化并更新简历"><a href="#三、优化并更新简历" class="headerlink" title="三、优化并更新简历"></a>三、优化并更新简历</h2><p>在准备复习之前，需要对简历做一个优化，简历可以大概分为以下七个部分：<br>1、个人信息<br>这个必须放在第一位或者最显眼的地方，hr筛选简历第一眼看的是个人信息是否符合，比如学历信息，工作年限等，也方便面试官联系到你。<br>个人信息应至少包含以下方面：</p><ul><li>姓名</li><li>性别</li><li>年龄</li><li>学历</li><li>籍贯</li><li>联系电话</li><li>目前城市</li><li>大学</li><li>电子邮件</li><li>工作经验<br>2、求职意向<br>工作性质、目标地点、目标职能、目标薪资<br>3、博客技术网站<br>这块是非必须的，但是可以作为一个加分项，很多面试官看到我这块的时候，都有去看我的博客，并就博客和开源网站问一些问题，这也可以表明你平时业余的时间有很大一部分是在技术博客开源网站论坛上面，侧面反应了你对技术的热爱，仅是一个加分项，主要还是要看技术栈和项目经验。<br>这里我主要写了我的<a href="https://blog.csdn.net/qq_43270074" target="_blank" rel="noopener">csdn博客</a>，<a href="http://canghe.top//" target="_blank" rel="noopener">个人网站</a>，<a href="%EF%BC%9Ahttps://github.com/freestylefly/javaStudy">GitHub开源项目</a>，微信公众号（苍何之旅）<br>4、工作经历<br>工作经历按照就近的一份工作在前，按照时间倒序的原则。写一下公司名称，职位名称，任职年限以及工作职责即可<br>5、专业技能<br>这部分是很重要的一部分内容，需按实填写，因为面试官拿到你简历问题的很大一部分来源都是根据你写的来的，有很多人把眼下最火的技术全部都写了，不得不说在HR简历筛选时有更大的机会能进入面试，但是面试官一问，没做过的确实很难能答的很好，建议按实写。<br>6、项目经历<br>这部分主要针对社招生，社招需要你有一定的项目经验，而且面试官很大程度上就围绕你写的项目来问，所以这是最为重要的环节，其中有几个必须项需要优化表述：</li><li>项目名称</li><li>项目所用技术</li><li>开发时间/开发周期：</li><li>项目描述</li><li>责任描述</li><li>技术描述</li></ul><p>一定要对自己项目很熟悉很熟悉，这里需要花点时间好好总结一下你的开发项目，用到哪些技术，遇到哪些问题以及是怎么解决的，有没有进行优化等等等。</p><p>优化完了简历在各大招聘网站可以更新自己的简历，比如boss和拉勾网等，我主要在boss上找。接下来就可以边挂着简历边进行技术面试的准备环节了。</p><h2 id="四、面试之自我介绍准备"><a href="#四、面试之自我介绍准备" class="headerlink" title="四、面试之自我介绍准备"></a>四、面试之自我介绍准备</h2><p>不得不说，我之前恐惧面试的很大一部分原因是因为我害怕去自我介绍，总觉得自己没什么可介绍的，一两句话就说完了，经过女朋友的一番鼓励以及方法支持，我不但克服了恐惧，在自我介绍时不仅自信从容还能随机应变就不同的面试官进行不同的介绍。<br>1、HR关心的是你这个人整体的个人素质，小伙子能不能吃苦，能不能有自己的规划，对技术是不是热爱这些，这个就要多展示一下你的个人优秀品质，少或者不加技术或者项目经验在里面。<br>2、技术面试官关心的是你的技术水平，很多公司技术分两轮，分为技术初面和复面，初面是你能不能进入接下来面试的重要一环，技术水平必须到位，所以自我介绍必须多讲一些项目和技术栈的东西，技术复面除了技术初面的介绍外，要让面试官觉得你对一项技术除了会用还要有自己的理解，当然这个平时的时候一定要注意，不要停留在仅仅会用的程度，对底层代码逻辑要很熟悉。<br>3、boss终极面试，有些公司会最后一轮老板面试，自我介绍时一定要带上对公司的一个了解，老板希望看到积极阳光、很大意向想进这家公司并且愿意和公司共同进步的人。</p><h2 id="五、面试之技术准备"><a href="#五、面试之技术准备" class="headerlink" title="五、面试之技术准备"></a>五、面试之技术准备</h2><p>技术准备不用说，必然是重中之重。<br>我在面试中常被问到的问题，我做了一个总结，但是没有列出答案，我在笔记上写了答案，如果有需要我笔记的可以私信发你。<br>1、hashmap相关</p><ul><li>JDK8中的hashmap有哪些改动</li><li>为何JDK8中的hashmap要使用红黑树</li><li>hashmap的扩容机制以及JDK7和JDK8的区别</li><li>hashmap是线程安全的嘛</li><li>使用hashmap的注意点</li></ul><p>2、volatile的理解<br>3、JDK7和8JVM的变化<br>4、Linux常用命令<br>5、zookeeper的理解</p><ul><li>是什么</li><li>zookeeper提供了什么</li><li>ZAB协议</li><li>如何保证事务一致性的</li><li>zk的宕机如何处理zk负载均衡和Nginx区别</li><li>zk应用场景</li></ul><p>6、Mysql碎银</p><ul><li>索引底层实现原理和优化</li><li>什么情况下索引无法使用</li></ul><p>7、SQL优化<br>结合项目谈一下你是怎么进行sql优化的<br>8、数据库引擎有什么区别<br>9、数据库锁<br>10、反射<br>11、java读取数据库时如何保证同一时刻只有一个线程修改数据库的某一条记录<br>12、union和union all的区别<br>13、具体的sql模拟测试<br>14、动态代理<br>15、java常见的设计模式<br>16、HTTP协<br>17、TCP协议<br>18、map的几个实现类以及区别<br>19、讲一下栈<br>20、如何让多个域名对应同一个IP<br>21、spring的AOP原理<br>22、java中动态代理的两种方式<br>23、mysql分页查询500万条数据，limit查最后一页很慢怎么优化<br>24、分布式事务<br>25、事务的隔离级别<br>26、多线程的状态，阻塞和非阻塞的区别<br>27、共享锁、互斥锁、读写锁<br>28、IO和NIO的区别<br>29、java垃圾回收机制（GC）</p><ul><li>JAVA内存</li><li>GC主要任务</li><li>如何鉴别一个对象是垃圾对象并被GC处理以及用到的算法</li><li>垃圾回收算法</li><li>开发中容易造成内存泄露的操作</li><li>JVM内存优化</li><li>30、java基本数据类型<br>31、方法重载和重写的区别<br>32、==和equals的区别<br>33、stringbuffer和stringbuilder的区别<br>34、java常见的异常<br>35、mybatis中的#和$的区别以及什么时候使用<br>36、mybatis索引失效怎么办<br>37、如何创建索引<br>38、笛卡尔积<br>39、Redis相关问题</li><li>什么是redis有什么用</li><li>redis的五种数据类型</li><li>redis持久化机制</li><li>缓存redis如何扩容</li><li>redis key的过期时间和永久有效分别怎么设置</li><li>过期数据怎么处理</li><li>redis如何做内存优化</li><li>redi事务</li><li>redis哨兵模式</li><li>redis分布式锁</li><li>缓存雪崩</li><li>缓存穿透</li><li>缓存击穿</li><li>缓存预热</li><li>缓存降级</li><li>redis用到的算法</li></ul><p>40、JVM相关</p><ul><li>说一下JVM主要组成部分以及作用</li><li>说一下JVM运行时数据区</li><li>深拷贝和浅拷贝，以及具体你项目中怎么使用</li><li>堆栈区别说一下</li><li>队列和栈是什么，有什么区别</li><li>保证线程安全的两种方式</li><li>java的内存泄露</li><li>如何判断对象是否可悲回收jvm垃圾回收算法</li><li>垃圾收集器</li><li>内存分配策略描述JVM加载class文件原理机制</li><li>双亲委证模型</li></ul><p>41、springmvc相关</p><ul><li>描述springmvc工作流程</li><li>mvc是什么</li><li>springmvc怎么设置重定向和转发</li></ul><p>42、为什么需要预编译<br>43、动态sql常用标签</p><h2 id="六、offer筛选，去到心仪公司"><a href="#六、offer筛选，去到心仪公司" class="headerlink" title="六、offer筛选，去到心仪公司"></a>六、offer筛选，去到心仪公司</h2><p>面试本身就是一个双向选择的过程，手头有一个offer不要立马就去入职这家公司，拒绝也是一种选择，有些公司可能会给你多加钱，这个时候就要各种对比，薪资是一方面，最重要的是个人的发展和公司的前景。</p>]]></content>
     
@@ -35,6 +35,10 @@
     
     </summary>
     
+      <category term="经验总结" scheme="http://freestylefly.github.io/categories/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/"/>
+    
+    
+      <category term="mainshi" scheme="http://freestylefly.github.io/tags/mainshi/"/>
     
   </entry>
   
